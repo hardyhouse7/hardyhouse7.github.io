@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promoción 2026 · E.F.A Nº 8212</title>
+<meta name="description" content="Promoción 2026 de la E.F.A Nº 8212. Baile de Recepción: 12 de diciembre de 2026.">
+<meta name="theme-color" content="#2a1a10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playball&family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#2a1a10;
+  --bg-deep:#1c110a;
+  --bg-soft:#3a2617;
+  --card:rgba(233,220,195,.055);
+  --line:rgba(214,188,146,.22);
+  --beige:#efe3cc;
+  --beige-dim:#cdbb9c;
+  --tan:#c9a676;
+  --tan-bright:#e2c595;
+  --cocoa:#8a6240;
+  --script:'Playball','Brush Script MT',cursive;
+  --sans:'Montserrat','Helvetica Neue',Arial,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);color:var(--beige);min-height:100vh;overflow-x:hidden;
+  background:
+    radial-gradient(80% 40% at 50% 0%, rgba(138,98,64,.55), transparent 70%),
+    radial-gradient(90% 50% at 50% 100%, var(--bg-deep), transparent 75%),
+    var(--bg);
+  background-attachment:fixed;
+}
+body.locked{overflow:hidden}
+body::before{ /* rayado sutil como el original */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:repeating-linear-gradient(90deg, rgba(0,0,0,.10) 0 2px, transparent 2px 6px);
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--tan-bright);outline-offset:3px;border-radius:4px}
+
+#dust,#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#dust{z-index:0}
+#confetti{z-index:90}
+main{position:relative;z-index:1}
+
+/* ---------- barra de progreso y navegación ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--cocoa),var(--tan-bright))}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:50;
+  display:flex;flex-direction:column;gap:14px}
+.dots a{position:relative;width:11px;height:11px;border-radius:50%;
+  border:1.5px solid var(--tan);transition:.3s}
+.dots a.on{background:var(--tan-bright);transform:scale(1.25);box-shadow:0 0 12px rgba(226,197,149,.6)}
+.dots a span{position:absolute;right:22px;top:50%;transform:translateY(-50%) translateX(6px);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:var(--beige);
+  background:var(--bg-deep);border:1px solid var(--line);padding:5px 9px;border-radius:99px;
+  opacity:0;pointer-events:none;transition:.25s}
+.dots a:hover span,.dots a:focus-visible span{opacity:1;transform:translateY(-50%)}
+@media (max-width:720px){.dots{display:none}}
+
+/* ---------- portada (sobre) ---------- */
+#cover{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden}
+#cover .half{position:absolute;top:0;bottom:0;width:50.5%;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0 2px, transparent 2px 6px),
+    linear-gradient(180deg,#4a3120,#2a1a10);
+  transition:transform 1.3s cubic-bezier(.7,0,.2,1)}
+#cover .half.l{left:0;border-right:1px solid var(--line)}
+#cover .half.r{right:0;border-left:1px solid var(--line)}
+#cover .inner{position:relative;text-align:center;padding:24px;transition:opacity .5s, transform .5s}
+#cover .pre{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--tan)}
+#cover h1{font-family:var(--script);font-weight:400;font-size:clamp(44px,11vw,84px);margin:10px 0 2px;color:var(--beige)}
+#cover .sub{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--beige-dim)}
+.seal{margin:34px auto 0;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%, #d9b582, #a87c4f 55%, #6f4b2c);
+  box-shadow:0 10px 30px rgba(0,0,0,.5), inset 0 0 0 5px rgba(255,255,255,.08), inset 0 0 0 9px rgba(60,35,18,.35);
+  color:#2a1a10;font-family:var(--script);font-size:26px;
+  animation:pulse 2.2s ease-in-out infinite;transition:transform .25s}
+.seal:hover{transform:scale(1.07) rotate(-4deg)}
+.seal small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-top:2px}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 0 rgba(226,197,149,.45), inset 0 0 0 5px rgba(255,255,255,.08), inset 0 0 0 9px rgba(60,35,18,.35)}
+  50%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 22px rgba(226,197,149,0), inset 0 0 0 5px rgba(255,255,255,.08), inset 0 0 0 9px rgba(60,35,18,.35)}}
+#cover.open .half.l{transform:translateX(-101%)}
+#cover.open .half.r{transform:translateX(101%)}
+#cover.open .inner{opacity:0;transform:scale(.9)}
+#cover.gone{display:none}
+
+/* ---------- secciones ---------- */
+section{position:relative;max-width:760px;margin:0 auto;padding:84px 22px;text-align:center}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--tan)}
+h2{font-family:var(--script);font-weight:400;font-size:clamp(38px,8vw,56px);color:var(--beige);margin:6px 0 10px}
+.rule{width:120px;height:1px;margin:0 auto 34px;background:linear-gradient(90deg,transparent,var(--tan),transparent);position:relative}
+.rule::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;background:var(--tan);transform:translate(-50%,-50%) rotate(45deg)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+#inicio{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:60px}
+.emblem{position:relative;width:min(86vw,430px);aspect-ratio:1;display:grid;place-items:center}
+.emblem svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:transform .2s ease-out}
+.emblem svg polygon{fill:none;stroke:var(--tan);stroke-width:.35;opacity:.75}
+.emblem .spin{transform-origin:50% 50%;animation:spin 90s linear infinite}
+.emblem .spin.rev{animation-direction:reverse;animation-duration:140s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.emblem .txt{position:relative}
+.emblem .school{font-size:clamp(11px,2.9vw,14px);font-weight:700;letter-spacing:.38em;color:var(--tan-bright)}
+.emblem .promo{font-family:var(--script);font-size:clamp(40px,11vw,62px);line-height:1.05;margin-top:6px}
+.emblem .year{font-size:clamp(64px,19vw,104px);font-weight:600;line-height:1;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:14px}
+.emblem .year::before,.emblem .year::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--tan)}
+.emblem .year b{font-weight:600;display:inline-block;animation:rise .9s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes rise{from{opacity:0;transform:translateY(40px) rotate(8deg)}}
+.emblem .tag{font-family:var(--script);font-size:clamp(20px,5.4vw,27px);margin-top:8px;color:var(--beige)}
+.logo{position:relative;width:64%;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#fff;
+  border:3px solid var(--tan);box-shadow:0 0 0 6px rgba(201,166,118,.18),0 24px 50px -18px rgba(0,0,0,.8);animation:logoIn 1s cubic-bezier(.2,.9,.3,1.2) both}
+.logo img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.03)}
+@keyframes logoIn{from{opacity:0;transform:scale(.8) rotate(-8deg)}}
+.cover-logo{width:min(46vw,190px);margin:22px auto 16px;animation:none}
+.school-line{margin-top:26px;font-size:clamp(11px,2.9vw,13px);font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--tan-bright)}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,4.6vw,25px);line-height:1.35;max-width:420px;margin:26px auto 0;color:var(--beige)}
+.scrollcue{margin-top:44px;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--beige-dim);display:inline-flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none}
+.scrollcue i{width:1px;height:38px;background:linear-gradient(var(--tan),transparent);animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- cuenta regresiva ---------- */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:560px;margin:0 auto}
+.count .u{padding:22px 6px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);backdrop-filter:blur(4px);overflow:hidden}
+.count .n{font-family:var(--serif);font-weight:600;font-size:clamp(40px,11vw,68px);line-height:1;color:var(--beige);font-variant-numeric:tabular-nums;display:block}
+.count .n.tick{animation:tick .45s ease}
+@keyframes tick{0%{transform:translateY(-35%);opacity:0}100%{transform:none;opacity:1}}
+.count .l{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--tan);margin-top:8px;display:block}
+.count-note{margin-top:22px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--beige-dim)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px;margin:46px auto 0;padding-top:34px;border-top:1px solid var(--line)}
+.stats b{display:block;font-family:var(--serif);font-size:clamp(34px,8vw,48px);font-weight:600;color:var(--tan-bright);line-height:1}
+.stats span{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--beige-dim)}
+
+/* ---------- tarjeta del evento ---------- */
+.tiltwrap{perspective:1100px}
+.ticket{position:relative;max-width:480px;margin:0 auto;padding:40px 26px 34px;border-radius:18px;
+  border:1px solid var(--line);
+  background:linear-gradient(160deg, rgba(233,220,195,.10), rgba(233,220,195,.03));
+  box-shadow:0 30px 60px -25px rgba(0,0,0,.7);
+  transform-style:preserve-3d;transition:transform .18s ease-out;overflow:hidden}
+.ticket::before{content:"";position:absolute;inset:9px;border:1px solid var(--line);border-radius:12px;pointer-events:none}
+.ticket .glow{position:absolute;width:320px;height:320px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle, rgba(226,197,149,.22), transparent 65%);
+  left:var(--mx,50%);top:var(--my,0%);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
+.ticket:hover .glow{opacity:1}
+.ticket h3{font-family:var(--script);font-weight:400;font-size:clamp(32px,8vw,42px)}
+.date{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin:26px 0 22px}
+.date .side{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--tan-bright);padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.date .day{font-family:var(--serif);font-weight:600;font-size:clamp(72px,19vw,104px);line-height:.85}
+.ticket .yr{font-size:13px;letter-spacing:.5em;color:var(--beige-dim)}
+.ticket .meta{margin-top:20px;display:grid;gap:8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--beige)}
+.ticket .meta .tbd{color:var(--beige-dim);font-style:italic;letter-spacing:.1em;text-transform:none;font-family:var(--serif);font-size:17px}
+.badge{display:inline-block;margin-top:22px;padding:7px 16px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:#2a1a10;background:linear-gradient(135deg,var(--tan-bright),var(--tan))}
+.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.btn{padding:13px 22px;border-radius:99px;border:1px solid var(--tan);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;transition:.25s}
+.btn:hover{background:var(--tan);color:#2a1a10;transform:translateY(-2px)}
+.btn.solid{background:var(--tan-bright);color:#2a1a10;border-color:var(--tan-bright)}
+.btn.solid:hover{background:var(--beige);border-color:var(--beige)}
+
+/* ---------- egresados ---------- */
+.tools{display:flex;gap:10px;max-width:520px;margin:0 auto 12px}
+.tools input{flex:1;min-width:0;padding:13px 18px;border-radius:99px;border:1px solid var(--line);background:rgba(0,0,0,.22);
+  color:var(--beige);font:500 14px var(--sans);outline:none;transition:.25s}
+.tools input::placeholder{color:var(--beige-dim);opacity:.7}
+.tools input:focus{border-color:var(--tan-bright);background:rgba(0,0,0,.35)}
+.found{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--beige-dim);margin-bottom:24px;min-height:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;text-align:left}
+.person{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);text-align:left;transition:transform .25s, border-color .25s, background .25s, opacity .3s}
+.person:hover{transform:translateY(-3px);border-color:var(--tan-bright);background:rgba(233,220,195,.11)}
+.person.hide{display:none}
+.mono{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--serif);font-weight:700;font-size:16px;color:#2a1a10;
+  background:linear-gradient(135deg,var(--tan-bright),var(--cocoa));transition:transform .5s}
+.person:hover .mono{transform:rotate(360deg)}
+.person .nm{font-size:13px;line-height:1.3;color:var(--beige-dim)}
+.person .nm b{display:block;color:var(--beige);font-weight:700;font-size:13.5px}
+.empty{grid-column:1/-1;text-align:center;font-family:var(--serif);font-style:italic;font-size:19px;color:var(--beige-dim);padding:26px 0}
+
+/* ---------- modal egresado ---------- */
+dialog{margin:auto;border:0;background:none;color:var(--beige);max-width:92vw}
+dialog::backdrop{background:rgba(20,12,7,.82);backdrop-filter:blur(5px)}
+.diploma{width:min(440px,92vw);padding:44px 26px 34px;text-align:center;border-radius:18px;border:1px solid var(--tan);
+  background:linear-gradient(160deg,#4a3120,#2a1a10);position:relative;animation:pop .45s cubic-bezier(.2,.9,.3,1.3)}
+.diploma::before{content:"";position:absolute;inset:9px;border:1px solid var(--line);border-radius:12px;pointer-events:none}
+@keyframes pop{from{opacity:0;transform:scale(.8) translateY(20px)}}
+.diploma .mono{width:74px;height:74px;font-size:30px;margin:0 auto 18px}
+.diploma .who{font-family:var(--script);font-size:clamp(30px,8vw,40px);line-height:1.1}
+.diploma .sur{font-size:12px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--tan-bright);margin-top:10px}
+.diploma p{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--beige-dim);margin:18px 0 24px}
+.x{position:absolute;top:14px;right:16px;width:34px;height:34px;border-radius:50%;font-size:20px;color:var(--beige-dim);z-index:1}
+.x:hover{color:var(--beige);background:rgba(255,255,255,.08)}
+
+/* ---------- frases ---------- */
+.slider{position:relative;max-width:520px;margin:0 auto;min-height:170px;display:grid}
+.slide{grid-area:1/1;font-family:var(--serif);font-style:italic;font-size:clamp(22px,5vw,29px);line-height:1.35;
+  opacity:0;transform:translateY(16px);transition:.7s;pointer-events:none;align-self:center}
+.slide.on{opacity:1;transform:none;pointer-events:auto}
+.pips{display:flex;gap:10px;justify-content:center;margin-top:24px}
+.pips button{width:26px;height:4px;border-radius:4px;background:var(--line);transition:.3s}
+.pips button.on{background:var(--tan-bright);width:42px}
+
+/* ---------- cierre ---------- */
+#final{padding-bottom:110px}
+.toast-btn{margin-top:26px;width:128px;height:128px;border-radius:50%;border:1px solid var(--tan);
+  font-family:var(--script);font-size:26px;color:var(--beige);position:relative;transition:.3s;
+  background:radial-gradient(circle at 50% 35%, rgba(226,197,149,.2), transparent 70%)}
+.toast-btn:hover{transform:scale(1.06);background:radial-gradient(circle at 50% 35%, rgba(226,197,149,.38), transparent 70%)}
+.toast-btn:active{transform:scale(.95)}
+.toast-btn small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--tan);margin-top:2px}
+.cheers{margin-top:16px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--beige-dim);min-height:14px}
+footer{margin-top:60px;padding-top:34px;border-top:1px solid var(--line)}
+footer .bye{font-family:var(--script);font-size:34px}
+footer small{display:block;margin-top:8px;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--beige-dim)}
+
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);z-index:95;padding:12px 22px;border-radius:99px;
+  background:var(--beige);color:#2a1a10;font-size:12px;font-weight:600;letter-spacing:.08em;transition:.4s;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+#toast.show{transform:translate(-50%,0)}
+
+@media (max-width:480px){
+  section{padding:66px 16px}
+  .count{gap:7px}
+  .count .u{padding:16px 2px 12px}
+  .count .l{letter-spacing:.14em;font-size:9px}
+  .grid{grid-template-columns:1fr 1fr}
+  .person{flex-direction:column;text-align:center;padding:14px 8px}
+  .date{gap:10px}
+  .date .side{font-size:10px;letter-spacing:.2em}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="locked">
+
+<canvas id="dust" aria-hidden="true"></canvas>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="progress"></div>
+
+<!-- Portada -->
+<div id="cover">
+  <div class="half l"></div><div class="half r"></div>
+  <div class="inner">
+    <div class="pre">E.F.A Nº 8212</div>
+    <div class="logo cover-logo"><img src="img/logo.jpg" alt="Promo 26 E.F.A" width="640" height="640"></div>
+    <div class="sub">Tenés una invitación</div>
+    <button class="seal" id="openBtn" aria-label="Abrir la invitación"><span>Abrir<small>invitación</small></span></button>
+  </div>
+</div>
+
+<nav class="dots" aria-label="Secciones">
+  <a href="#inicio"><span>Inicio</span></a>
+  <a href="#cuenta"><span>Cuenta regresiva</span></a>
+  <a href="#fiesta"><span>Recepción</span></a>
+  <a href="#egresados"><span>Egresados</span></a>
+  <a href="#frases"><span>Frases</span></a>
+  <a href="#final"><span>Brindis</span></a>
+</nav>
+
+<main>
+  <!-- Inicio -->
+  <section id="inicio">
+    <div class="emblem" id="emblem">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g class="spin" id="ringA"></g><g class="spin rev" id="ringB"></g></svg>
+      <div class="logo"><img src="img/logo.jpg" alt="Promo 26 E.F.A" width="640" height="640"></div>
+    </div>
+    <div class="school-line">E.F.A Nº 8212 · Promoción 2026</div>
+    <p class="quote">“Sembramos esfuerzo, amistad y sueños. Hoy nos toca cosechar.”</p>
+    <a class="scrollcue" href="#cuenta">Deslizá<i></i></a>
+  </section>
+
+  <!-- Cuenta regresiva -->
+  <section id="cuenta">
+    <div class="reveal">
+      <div class="eyebrow">Faltan</div>
+      <h2>Cuenta regresiva</h2>
+      <div class="rule"></div>
+      <div class="count" id="count">
+        <div class="u"><span class="n" data-u="d">0</span><span class="l">Días</span></div>
+        <div class="u"><span class="n" data-u="h">0</span><span class="l">Horas</span></div>
+        <div class="u"><span class="n" data-u="m">0</span><span class="l">Min</span></div>
+        <div class="u"><span class="n" data-u="s">0</span><span class="l">Seg</span></div>
+      </div>
+      <p class="count-note" id="countNote">Para el Baile de Recepción</p>
+      <div class="stats">
+        <div><b data-count="36">0</b><span>Egresados</span></div>
+        <div><b data-count="1">0</b><span>Promoción</span></div>
+        <div><b>∞</b><span>Recuerdos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recepción -->
+  <section id="fiesta">
+    <div class="reveal">
+      <div class="eyebrow">Te invitamos</div>
+      <h2>La gran noche</h2>
+      <div class="rule"></div>
+      <div class="tiltwrap">
+        <div class="ticket" id="ticket">
+          <div class="glow"></div>
+          <h3>Baile de Recepción</h3>
+          <div class="date">
+            <div class="side">Sábado</div>
+            <div class="day">12</div>
+            <div class="side">Diciembre</div>
+          </div>
+          <div class="yr">2026</div>
+          <div class="meta">
+            <div id="evHora"></div>
+            <div id="evLugar"></div>
+          </div>
+          <span class="badge" id="evBadge"></span>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn solid" id="icsBtn">Agendar la fecha</button>
+        <button class="btn" id="shareBtn">Compartir invitación</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Egresados -->
+  <section id="egresados">
+    <div class="reveal">
+      <div class="eyebrow">Promoción 2026</div>
+      <h2>Egresados</h2>
+      <div class="rule"></div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Buscá un nombre o apellido…" aria-label="Buscar egresado" autocomplete="off">
+        <button class="btn" id="randomBtn" title="Elegir un egresado al azar">Al azar</button>
+      </div>
+      <div class="found" id="found" aria-live="polite"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- Frases -->
+  <section id="frases">
+    <div class="reveal">
+      <div class="eyebrow">Para recordar</div>
+      <h2>Lo que nos llevamos</h2>
+      <div class="rule"></div>
+      <div class="slider" id="slider">
+        <p class="slide">“Como el trigo, crecimos juntos y cada uno a su tiempo.”</p>
+        <p class="slide">“De cada surco que caminamos nos llevamos un recuerdo.”</p>
+        <p class="slide">“A nuestras familias y docentes: gracias por ser la tierra firme donde echamos raíces.”</p>
+        <p class="slide">“La escuela queda atrás; lo sembrado viaja con nosotros.”</p>
+      </div>
+      <div class="pips" id="pips"></div>
+    </div>
+  </section>
+
+  <!-- Cierre -->
+  <section id="final">
+    <div class="reveal">
+      <div class="eyebrow">Por la Promo 2026</div>
+      <h2>¡Brindemos!</h2>
+      <div class="rule"></div>
+      <button class="toast-btn" id="cheersBtn"><span>¡Salud!<small>Tocá acá</small></span></button>
+      <div class="cheers" id="cheers"></div>
+      <footer>
+        <div class="bye">Te esperamos</div>
+        <small>E.F.A Nº 8212 · 12 de diciembre de 2026</small>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<dialog id="modal" aria-labelledby="mWho">
+  <div class="diploma">
+    <button class="x" id="mClose" aria-label="Cerrar">×</button>
+    <div class="mono" id="mMono"></div>
+    <div class="who" id="mWho"></div>
+    <div class="sur" id="mSur"></div>
+    <p>Egresado/a · Promoción 2026<br>E.F.A Nº 8212</p>
+    <button class="btn solid" id="mCheer">¡Felicitaciones!</button>
+  </div>
+</dialog>
+
+<div id="toast" role="status"></div>
+
+<script>
+/* =====================  DATOS EDITABLES  ===================== */
+const EVENTO = {
+  titulo: 'Baile de Recepción · Promoción 2026',
+  escuela: 'E.F.A Nº 8212',
+  anio: 2026, mes: 12, dia: 12,
+  hora: '21:00',  // ej: '21:30'  (null = "a confirmar")
+  lugar: null    // ej: 'Salón de la escuela'  (null = "a confirmar")
+};
+const EGRESADOS = [
+  'Barria, Katherine L.','Cabral, Victoria','Cano, Ivana Valentina','Comán, Mailén Sofía',
+  'Franco, Zoe Valentina','Gamarra, Luján María José','Gomez, Brisa Marianela','Luque, Solange Thiara',
+  'Masin Pepermans, Lucia','Meiler Aguirre, Zoe','Montenegro, Maira Naiara','Perone, Luana María',
+  'Regonat Masin, Liz','Rodríguez, María Eugenia','Romero Guardia, Kiara Aixa','Rosales, Valentina Sofía',
+  'Ruiz Díaz, Magalí Guadalupe','Tejeda Zagni, Cloé','Serrano Gavilán, Constanza','Speranza, Ana Belén',
+  'Villan, Anna Paula','Yaccuzzi Quevedo, Ileana Evelin','Yaccuzzi, Valentina',
+  'Aguirre, Nicolás Agustín','Bosch, Esequiel Ricardo','Corgniali, Juan Cruz','Cubecino, Agustín Ignacio',
+  'De Nardo, Santino Thomás','Flores, Aín','Forlín, Santiago Tadeo','Fortonskiz Vera, Fabricio',
+  'Meiler, Juan José','Salpietro, Jerónimo Salvador','Tomadín, Joaquín Andrés','Vega, Nahuel Nicolás',
+  'Yaccuzzi, Emiliano Andrés'
+];
+/* ============================================================= */
+
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const [hh, mm] = EVENTO.hora ? EVENTO.hora.split(':').map(Number) : [0, 0];
+const target = new Date(EVENTO.anio, EVENTO.mes - 1, EVENTO.dia, hh, mm, 0);
+
+/* ---------- confeti ---------- */
+const cf = $('#confetti'), cx = cf.getContext('2d');
+let bits = [], cfRun = false;
+const COLORS = ['#efe3cc','#e2c595','#c9a676','#8a6240','#f7efe0','#6f4b2c'];
+function sizeCanvas(c){ const d = Math.min(devicePixelRatio||1, 2); c.width = innerWidth*d; c.height = innerHeight*d; c.getContext('2d').setTransform(d,0,0,d,0,0); }
+function confetti(x = innerWidth/2, y = innerHeight/2, n = 110){
+  if (reduce) return;
+  for (let i=0;i<n;i++){
+    const a = Math.random()*Math.PI*2, v = 4 + Math.random()*9;
+    bits.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-5,w:5+Math.random()*6,h:3+Math.random()*5,
+      r:Math.random()*6,vr:(Math.random()-.5)*.4,c:COLORS[i%COLORS.length],life:1,round:Math.random()<.25});
+  }
+  if (!cfRun){ cfRun = true; cfLast = performance.now(); requestAnimationFrame(cfStep); }
+}
+let cfLast = 0;
+function cfStep(now){
+  const k = Math.min(40, Math.max(.2, (now - cfLast)/16.7)); cfLast = now; // pasos por tiempo real
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  bits = bits.filter(b => b.life > 0 && b.y < innerHeight + 30);
+  for (const b of bits){
+    b.vy += .22*k; b.vx *= Math.pow(.985,k); b.x += b.vx*k; b.y += b.vy*k; b.r += b.vr*k; b.life -= .006*k;
+    cx.save(); cx.translate(b.x,b.y); cx.rotate(b.r); cx.globalAlpha = Math.max(0, Math.min(1, b.life*2)); cx.fillStyle = b.c;
+    if (b.round){ cx.beginPath(); cx.arc(0,0,b.w/2,0,7); cx.fill(); } else cx.fillRect(-b.w/2,-b.h/2,b.w,b.h);
+    cx.restore();
+  }
+  if (bits.length) requestAnimationFrame(cfStep); else { cfRun = false; cx.clearRect(0,0,innerWidth,innerHeight); }
+}
+
+/* ---------- polvo dorado de fondo ---------- */
+const dc = $('#dust'), dx = dc.getContext('2d');
+let motes = [], mouse = {x:-999,y:-999};
+function seedDust(){
+  const n = Math.min(70, Math.round(innerWidth*innerHeight/22000));
+  motes = Array.from({length:n}, () => ({x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:.6+Math.random()*1.8,vx:(Math.random()-.5)*.18,vy:-.08-Math.random()*.25,a:.15+Math.random()*.5,p:Math.random()*6}));
+}
+function dustStep(t){
+  dx.clearRect(0,0,innerWidth,innerHeight);
+  for (const m of motes){
+    const ddx = m.x-mouse.x, ddy = m.y-mouse.y, d2 = ddx*ddx+ddy*ddy;
+    if (d2 < 14000){ const f = (14000-d2)/14000*.9; m.x += ddx/Math.sqrt(d2+1)*f; m.y += ddy/Math.sqrt(d2+1)*f; }
+    m.x += m.vx; m.y += m.vy;
+    if (m.y < -5){ m.y = innerHeight+5; m.x = Math.random()*innerWidth; }
+    if (m.x < -5) m.x = innerWidth+5; if (m.x > innerWidth+5) m.x = -5;
+    dx.globalAlpha = m.a*(.6+.4*Math.sin(t/900+m.p));
+    dx.fillStyle = '#e2c595'; dx.beginPath(); dx.arc(m.x,m.y,m.r,0,7); dx.fill();
+  }
+  requestAnimationFrame(dustStep);
+}
+function resize(){ sizeCanvas(cf); sizeCanvas(dc); seedDust(); }
+addEventListener('resize', resize); resize();
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+if (!reduce) requestAnimationFrame(dustStep);
+
+/* ---------- portada ---------- */
+$('#openBtn').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  $('#cover').classList.add('open');
+  document.body.classList.remove('locked');
+  confetti(r.left+r.width/2, r.top+r.height/2, 160);
+  setTimeout(() => $('#cover').classList.add('gone'), 1400);
+});
+
+/* ---------- emblema geométrico ---------- */
+function poly(sides, radius, rot){
+  let pts = [];
+  for (let i=0;i<sides;i++){ const a = rot + i*2*Math.PI/sides; pts.push((50+radius*Math.cos(a)).toFixed(2)+','+(50+radius*Math.sin(a)).toFixed(2)); }
+  return `<polygon points="${pts.join(' ')}"/>`;
+}
+$('#ringA').innerHTML = [0,.21,.42].map(r => poly(10,48,r)).join('');
+$('#ringB').innerHTML = [.1,.33,.52].map((r,i) => poly(9,46-i*1.5,r)).join('');
+const emblemSvg = $('#emblem svg');
+addEventListener('pointermove', e => {
+  if (reduce) return;
+  const x = (e.clientX/innerWidth-.5)*16, y = (e.clientY/innerHeight-.5)*16;
+  emblemSvg.style.transform = `translate(${x}px,${y}px)`;
+});
+
+/* ---------- cuenta regresiva ---------- */
+const units = Object.fromEntries($$('#count .n').map(n => [n.dataset.u, n]));
+function setUnit(k, v){
+  const el = units[k], s = k==='d' ? String(v) : String(v).padStart(2,'0');
+  if (el.textContent !== s){ el.textContent = s; el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+}
+function daysLeft(){
+  const t0 = new Date(); t0.setHours(0,0,0,0);
+  const t1 = new Date(EVENTO.anio, EVENTO.mes-1, EVENTO.dia);
+  return Math.round((t1 - t0)/864e5);
+}
+function tick(){
+  let ms = target - Date.now();
+  const dl = daysLeft();
+  if (ms <= 0){
+    ['d','h','m','s'].forEach(k => setUnit(k,0));
+    $('#countNote').textContent = dl === 0 ? '¡Hoy es la gran noche!' : '¡Gracias por acompañarnos!';
+  } else {
+    const s = Math.floor(ms/1000);
+    setUnit('d', Math.floor(s/86400)); setUnit('h', Math.floor(s%86400/3600));
+    setUnit('m', Math.floor(s%3600/60)); setUnit('s', s%60);
+  }
+  $('#evBadge').textContent = dl > 1 ? `Faltan ${dl} días` : dl === 1 ? 'Falta 1 día' : dl === 0 ? '¡Es hoy!' : 'Promoción 2026';
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- datos del evento ---------- */
+$('#evHora').innerHTML = EVENTO.hora ? `${EVENTO.hora} hs.` : '<span class="tbd">Horario a confirmar</span>';
+$('#evLugar').innerHTML = EVENTO.lugar ? EVENTO.lugar : '<span class="tbd">Lugar a confirmar</span>';
+
+/* ---------- tarjeta con inclinación ---------- */
+const ticket = $('#ticket');
+ticket.addEventListener('pointermove', e => {
+  const r = ticket.getBoundingClientRect(), px = (e.clientX-r.left)/r.width, py = (e.clientY-r.top)/r.height;
+  ticket.style.setProperty('--mx', px*100+'%'); ticket.style.setProperty('--my', py*100+'%');
+  if (!reduce && e.pointerType === 'mouse') ticket.style.transform = `rotateY(${(px-.5)*14}deg) rotateX(${(.5-py)*12}deg)`;
+});
+ticket.addEventListener('pointerleave', () => ticket.style.transform = '');
+
+/* ---------- agendar (.ics) y compartir ---------- */
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2600); }
+const p2 = n => String(n).padStart(2,'0');
+$('#icsBtn').addEventListener('click', () => {
+  const ymd = d => `${d.getFullYear()}${p2(d.getMonth()+1)}${p2(d.getDate())}`;
+  let when;
+  if (EVENTO.hora){
+    const end = new Date(target.getTime() + 6*36e5), f = d => `${ymd(d)}T${p2(d.getHours())}${p2(d.getMinutes())}00`;
+    when = [`DTSTART:${f(target)}`, `DTEND:${f(end)}`];
+  } else {
+    const next = new Date(EVENTO.anio, EVENTO.mes-1, EVENTO.dia+1);
+    when = [`DTSTART;VALUE=DATE:${ymd(target)}`, `DTEND;VALUE=DATE:${ymd(next)}`];
+  }
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Promo 2026 EFA 8212//ES','BEGIN:VEVENT',
+    `UID:recepcion-promo2026-efa8212`, `DTSTAMP:${ymd(new Date())}T000000Z`, ...when,
+    `SUMMARY:${EVENTO.titulo}`, `LOCATION:${EVENTO.lugar || EVENTO.escuela}`,
+    `DESCRIPTION:Baile de Recepción de la Promoción 2026 - ${EVENTO.escuela}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics], {type:'text/calendar'}));
+  a.download = 'recepcion-promo-2026.ics'; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast('Evento listo para tu calendario');
+});
+$('#shareBtn').addEventListener('click', async () => {
+  const data = {title: document.title, text: `¡Te invitamos al Baile de Recepción de la Promo 2026 de la ${EVENTO.escuela}! 12 de diciembre.`, url: location.href};
+  try {
+    if (navigator.share) await navigator.share(data);
+    else { await navigator.clipboard.writeText(`${data.text} ${data.url}`); toast('Invitación copiada al portapapeles'); }
+  } catch (err) { if (err.name !== 'AbortError') toast('No se pudo compartir'); }
+});
+
+/* ---------- egresados ---------- */
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const grid = $('#grid');
+const people = EGRESADOS.map(full => {
+  const [sur, name] = full.split(', ');
+  const b = document.createElement('button');
+  b.className = 'person'; b.type = 'button';
+  b.innerHTML = `<span class="mono">${name[0]}${sur[0]}</span><span class="nm"><b>${sur}</b>${name}</span>`;
+  b.addEventListener('click', () => openPerson(sur, name));
+  grid.append(b);
+  return {sur, name, el: b, key: norm(full)};
+});
+const emptyMsg = Object.assign(document.createElement('div'), {className:'empty', textContent:'No encontramos a nadie con ese nombre.', hidden:true});
+grid.append(emptyMsg);
+function filter(){
+  const q = norm($('#search').value.trim());
+  let n = 0;
+  for (const p of people){ const ok = !q || p.key.includes(q); p.el.classList.toggle('hide', !ok); if (ok) n++; }
+  emptyMsg.hidden = n > 0;
+  $('#found').textContent = q ? `${n} de ${people.length} egresados` : `${people.length} egresados · tocá un nombre`;
+}
+$('#search').addEventListener('input', filter); filter();
+
+const modal = $('#modal');
+function openPerson(sur, name){
+  $('#mMono').textContent = name[0] + sur[0];
+  $('#mWho').textContent = name; $('#mSur').textContent = sur;
+  modal.showModal();
+  confetti(innerWidth/2, innerHeight*.35, 70);
+}
+$('#mClose').addEventListener('click', () => modal.close());
+$('#mCheer').addEventListener('click', () => confetti(innerWidth/2, innerHeight*.45, 140));
+modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+$('#randomBtn').addEventListener('click', () => {
+  const p = people[Math.floor(Math.random()*people.length)];
+  openPerson(p.sur, p.name);
+});
+
+/* ---------- frases ---------- */
+const slides = $$('#slider .slide'), pips = $('#pips');
+let cur = 0, auto;
+slides.forEach((_, i) => { const b = document.createElement('button'); b.setAttribute('aria-label', `Frase ${i+1}`); b.addEventListener('click', () => { go(i); restart(); }); pips.append(b); });
+function go(i){ cur = (i+slides.length)%slides.length; slides.forEach((s,k) => s.classList.toggle('on', k===cur)); $$('button', pips).forEach((b,k) => b.classList.toggle('on', k===cur)); }
+function restart(){ clearInterval(auto); auto = setInterval(() => go(cur+1), 5500); }
+go(0); restart();
+let sx = null;
+$('#slider').addEventListener('pointerdown', e => sx = e.clientX);
+$('#slider').addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX-sx) > 40){ go(cur + (e.clientX < sx ? 1 : -1)); restart(); } sx = null; });
+
+/* ---------- brindis ---------- */
+let cheers = 0;
+$('#cheersBtn').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  confetti(r.left+r.width/2, r.top+r.height/2, 150);
+  cheers++;
+  $('#cheers').textContent = cheers === 1 ? '¡Un brindis por la promo!' : `¡${cheers} brindis por la promo!`;
+});
+
+/* ---------- aparición, contadores, navegación, progreso ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+  $$('[data-count]', e.target).forEach(el => {
+    const end = +el.dataset.count, t0 = performance.now();
+    (function step(t){ const k = Math.min(1,(t-t0)/1400); el.textContent = Math.round(end*(1-Math.pow(1-k,3))); if (k<1) requestAnimationFrame(step); })(t0);
+  });
+}), {threshold:.12});
+$$('.reveal').forEach(el => io.observe(el));
+
+const dots = $$('.dots a'), secs = dots.map(a => $(a.getAttribute('href')));
+function onScroll(){
+  const h = document.documentElement.scrollHeight - innerHeight;
+  $('#progress').style.width = (h > 0 ? scrollY/h*100 : 0) + '%';
+  let idx = 0; secs.forEach((s,i) => { if (s.getBoundingClientRect().top < innerHeight*.5) idx = i; });
+  dots.forEach((d,i) => d.classList.toggle('on', i===idx));
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+</script>
+</body>
+</html>
