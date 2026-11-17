@@ -7,7 +7,7 @@
 <meta name="description" content="[COMPLETAR] Descripción corta de Aether Agency para buscadores.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=Michroma&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;1,600&family=Inter:wght@400;500;600&family=Michroma&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
    AETHER AGENCY — PLANTILLA v2 (minimalista, clara y dinámica)
@@ -71,7 +71,7 @@ em,.serif{font-family:var(--serif);font-style:italic;font-weight:600;letter-spac
 
 /* ---------- Botones ---------- */
 .btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;border-radius:999px;font-weight:500;font-size:.95rem;
-  transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);will-change:transform}
+  transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease)}
 .btn-dark{background:var(--accent);color:#041014;font-weight:600}
 .btn-dark:hover{background:var(--accent-2);box-shadow:0 14px 34px -10px rgba(20,184,166,.6)}
 .btn-line{border:1px solid rgba(20,184,166,.5);background:rgba(20,184,166,.04);color:var(--ink)}
@@ -119,20 +119,25 @@ section{padding:140px 0;position:relative}
 /* Ondas de luz (como el fondo del logo) */
 .waves{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .waves path{fill:none;stroke-linecap:round}
-.waves .glow{stroke:url(#waveGrad);stroke-width:1.6;filter:url(#blurGlow);stroke-dasharray:900 2600;animation:flow 9s linear infinite}
-.waves .glow.g2{animation-duration:13s;animation-delay:-4s;opacity:.7}
+/* Rendimiento: sin filtros SVG ni blur; el brillo es un trazo ancho y transparente */
+.waves .glow{stroke:url(#waveGrad);stroke-width:1.6;stroke-dasharray:900 2600;animation:flow 9s linear infinite}
+.waves .glow.halo{stroke-width:7;opacity:.18}
+.waves .glow.g2{animation-duration:13s;animation-delay:-4s}
+.waves .glow.g2:not(.halo){opacity:.7}
 .waves .thin{stroke:rgba(45,212,191,.16);stroke-width:1}
 @keyframes flow{from{stroke-dashoffset:3500}to{stroke-dashoffset:0}}
+/* Cuando el inicio no está en pantalla, las animaciones se pausan */
+.hero.off .waves path,.hero.off .scroll-hint .mouse::after{animation-play-state:paused}
 /* Planeta con borde de luz (como el mockup) */
-.planet{position:absolute;width:900px;height:900px;border-radius:50%;right:-380px;bottom:-560px;z-index:0;will-change:transform;
+.planet{position:absolute;width:900px;height:900px;border-radius:50%;right:-380px;bottom:-560px;z-index:0;
   background:radial-gradient(circle at 35% 25%,#123a52 0%,#0a1a2c 45%,#050b14 70%);
   box-shadow:inset 0 2px 0 rgba(45,212,191,.55),inset 0 30px 80px -20px rgba(20,184,166,.35),0 -20px 120px -30px rgba(20,184,166,.45)}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;will-change:transform}
-.blob.b1{width:520px;height:520px;background:rgba(20,184,166,.18);top:-10%;right:-8%}
-.blob.b3{width:420px;height:420px;background:rgba(23,43,77,.8);top:30%;left:-12%}
+/* Manchas de luz con degradado radial (mucho más livianas que filter:blur) */
+.blob{position:absolute;border-radius:50%;z-index:0}
+.blob.b1{width:820px;height:820px;background:radial-gradient(circle,rgba(20,184,166,.2),transparent 62%);top:-30%;right:-22%}
+.blob.b3{width:700px;height:700px;background:radial-gradient(circle,rgba(23,43,77,.9),transparent 62%);top:12%;left:-26%}
 .chip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;font-size:.85rem;
-  background:rgba(11,22,38,.5);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);will-change:transform}
+  background:rgba(11,22,38,.85);border:1px solid var(--line);box-shadow:0 10px 30px -12px rgba(0,0,0,.6)}
 .chip i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.8rem;background:var(--accent-soft);color:var(--accent-2)}
 .chip strong{font-weight:600}
 .chip.c1{top:60%;right:6%}
@@ -180,10 +185,39 @@ section{padding:140px 0;position:relative}
 .svc-inner p{color:var(--muted);max-width:480px}
 .svc-inner ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
 .svc-inner li{font-size:.82rem;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.svc-link{display:inline-flex;gap:8px;margin-top:16px;color:var(--accent-2);font-weight:500;font-size:.92rem}
+.svc-link:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- ELEGÍ TU WEB (filtro por objetivo) ---------- */
+.chooser-filters{display:flex;flex-wrap:wrap;gap:8px}
+.chooser-hint{margin:22px 0 36px;color:var(--muted);font-size:.95rem;min-height:1.6em}
+.chooser-hint b{color:var(--ink);font-weight:500}
+.webs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.web{padding:30px;border-radius:var(--radius);display:flex;flex-direction:column;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(23,43,77,.45),rgba(11,22,38,.5));animation:swap .6s var(--ease) both;
+  transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.web:hover{transform:translateY(-6px);border-color:rgba(20,184,166,.45);box-shadow:0 24px 60px -30px rgba(20,184,166,.45)}
+.web .kind{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.web h3{margin:10px 0 8px}
+.web p{color:var(--muted);font-size:.94rem}
+.web ul{list-style:none;margin:18px 0 26px;display:grid;gap:9px;font-size:.9rem;color:var(--ink-2)}
+.web li{display:flex;gap:10px;line-height:1.45}
+.web li::before{content:"✓";color:var(--accent-2);flex:none}
+.web .ask{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:500;color:var(--accent-2)}
+.web .ask span{transition:transform .35s var(--ease)}
+.web .ask:hover span{transform:translateX(4px)}
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:150;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:var(--accent);color:#041014;box-shadow:0 14px 34px -10px rgba(20,184,166,.7);transition:transform .35s var(--ease)}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:26px;height:26px}
+.wa-float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);animation:ring 2.4s var(--ease) infinite}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
 
 /* ---------- CÓMO FUNCIONA (embudo interactivo) ---------- */
 .learn{background:linear-gradient(160deg,rgba(23,43,77,.55),rgba(11,22,38,.6));border:1px solid var(--line);border-radius:36px;padding:56px;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 40px 100px -50px rgba(0,0,0,.8),inset 0 1px 0 rgba(226,232,240,.06)}
+  box-shadow:0 40px 100px -50px rgba(0,0,0,.8),inset 0 1px 0 rgba(226,232,240,.06)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 30px}
 .tab{padding:10px 18px;border-radius:999px;border:1px solid var(--line);font-size:.9rem;transition:.3s var(--ease)}
 .tab:hover{border-color:var(--accent)}
@@ -242,21 +276,6 @@ input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 6px var(-
 .flow span{font-size:.78rem;color:rgba(255,255,255,.55)}
 .note{font-size:.78rem;color:rgba(255,255,255,.45)}
 
-/* ---------- CASOS ---------- */
-.cases{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
-.case{display:block;border-radius:28px;overflow:hidden;position:relative}
-.case-media{aspect-ratio:4/3;overflow:hidden;border-radius:28px;position:relative;display:grid;place-items:center;font-size:.9rem;color:rgba(226,232,240,.4);border:1px solid var(--line)}
-.case:nth-child(2) .case-media{aspect-ratio:3/4}
-.case-media.m1{background:radial-gradient(90% 90% at 80% 10%,rgba(20,184,166,.45),transparent 60%),var(--navy)}
-.case-media.m2{background:radial-gradient(90% 90% at 20% 90%,rgba(20,184,166,.35),transparent 60%),#0d1f36}
-.case-media > *{transition:transform 1s var(--ease)}
-.case-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.case:hover .case-media > *{transform:scale(1.05)}
-.case-tag{position:absolute;left:18px;top:18px;padding:7px 14px;border-radius:999px;font-size:.8rem;background:rgba(5,11,20,.55);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.case-info{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 6px}
-.case-info p{color:var(--muted);font-size:.92rem}
-.case-metric{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2rem;color:var(--accent-2);line-height:1}
-
 /* ---------- FAQ ---------- */
 .faq{display:grid;grid-template-columns:1fr 1.4fr;gap:80px}
 details{border-bottom:1px solid var(--line)}
@@ -275,7 +294,12 @@ details p{color:var(--muted);padding:0 0 26px;max-width:600px;animation:swap .5s
 .cta-ring.r1{width:520px;height:520px}.cta-ring.r2{width:820px;height:820px}.cta-ring.r3{width:1120px;height:1120px}
 .cta > *:not(.cta-ring){position:relative}
 .cta-form{display:flex;gap:8px;max-width:500px;margin:0 auto;padding:6px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
-.cta-form input{flex:1;min-width:0;background:transparent;border:0;outline:0;font:inherit;padding:0 18px;color:var(--ink)}
+.cta-form input,.cta-form select{flex:1;min-width:0;background:transparent;border:0;outline:0;font:inherit;padding:0 18px;color:var(--ink)}
+.cta-form select{color:var(--muted);cursor:pointer}
+.cta-form select option{background:var(--surface);color:var(--ink)}
+.cta-form{max-width:640px}
+.cta-phone{margin-top:22px;font-size:.9rem;color:var(--muted)}
+.cta-phone a{color:var(--accent-2)}
 
 /* ---------- FOOTER ---------- */
 footer{padding:100px 0 30px}
@@ -295,11 +319,11 @@ footer{padding:100px 0 30px}
 
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
-  .head,.learn,.process,.calc,.cases,.faq{grid-template-columns:1fr}
+  .head,.learn,.process,.calc,.faq{grid-template-columns:1fr}
   .process,.faq{gap:48px}
   .process-sticky{position:static}
   .learn{padding:36px}
-  .case:nth-child(2) .case-media{aspect-ratio:4/3}
+  .webs{grid-template-columns:1fr 1fr}
   .foot{grid-template-columns:1fr 1fr}
   .chip{display:none}
   .planet{width:640px;height:640px;right:-300px;bottom:-460px}
@@ -324,8 +348,11 @@ footer{padding:100px 0 30px}
   .flow div{padding:12px 10px}
   .flow b{font-size:1rem}
   .cta{padding:80px 20px;border-radius:28px}
+  .webs{grid-template-columns:1fr}
+  .web{padding:24px}
+  .wa-float{right:16px;bottom:16px;width:54px;height:54px}
   .cta-form{flex-direction:column;border-radius:22px}
-  .cta-form input{padding:14px 16px}
+  .cta-form input,.cta-form select{padding:14px 16px}
   .foot{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
@@ -358,9 +385,9 @@ footer{padding:100px 0 30px}
     <a href="#" class="logo" aria-label="Aether Agency"><svg class="logo-mark"><use href="#aMark"/></svg><span class="logo-word">AETHER</span></a>
     <ul class="nav-links">
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#webs">Tipos de web</a></li>
       <li><a href="#proceso">Proceso</a></li>
-      <li><a href="#casos">Casos</a></li>
+      <li><a href="#faq">Preguntas</a></li>
     </ul>
     <a href="#contacto" class="btn btn-dark magnetic">Hablemos <span class="arr">→</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
@@ -375,16 +402,17 @@ footer{padding:100px 0 30px}
   <svg class="waves" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="waveGrad" x1="0" x2="1"><stop offset="0" stop-color="#14b8a6" stop-opacity="0"/><stop offset=".5" stop-color="#2dd4bf"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></linearGradient>
-      <filter id="blurGlow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
     <path class="thin" d="M-50 520C260 420 420 160 760 120S1240 60 1500 -40"/>
+    <path class="glow halo" d="M-50 520C260 420 420 160 760 120S1240 60 1500 -40"/>
     <path class="glow" d="M-50 520C260 420 420 160 760 120S1240 60 1500 -40"/>
     <path class="thin" d="M-50 980C300 860 560 760 900 740S1300 600 1500 480"/>
+    <path class="glow g2 halo" d="M-50 980C300 860 560 760 900 740S1300 600 1500 480"/>
     <path class="glow g2" d="M-50 980C300 860 560 760 900 740S1300 600 1500 480"/>
   </svg>
   <div class="planet" data-speed="0.12" aria-hidden="true"></div>
-  <div class="chip c1" data-speed="-0.25"><i>↗</i><span><strong>[+248%]</strong> alcance</span></div>
-  <div class="chip c2" data-speed="-0.12"><i>⚡</i><span>Procesos <strong>automatizados</strong></span></div>
+  <div class="chip c1" data-speed="-0.25"><i>&lt;/&gt;</i><span>Webs <strong>a medida</strong></span></div>
+  <div class="chip c2" data-speed="-0.12"><i>⚡</i><span>Chatbot con <strong>IA</strong></span></div>
 
   <div class="container">
     <span class="label reveal">Marketing · Tecnología · Resultados</span>
@@ -422,7 +450,7 @@ footer{padding:100px 0 30px}
   <div class="container">
     <span class="label" style="margin-bottom:32px">Nuestra idea</span>
     <!-- Las palabras entre *asteriscos* se muestran en cursiva y color de acento -->
-    <p id="manifesto">Marketing, desarrollo y tecnología en *una* *sola* *agencia.* Explicamos cada paso, medimos cada resultado y construimos soluciones que *potencian* tu marca en el mundo digital.</p>
+    <p id="manifesto">Creamos herramientas digitales para que tu negocio se *presente* *mejor,* llegue a *más* *personas* y *simplifique* tareas. Desarrollo web, marketing digital y automatización con inteligencia artificial, en una sola agencia.</p>
   </div>
 </section>
 
@@ -439,34 +467,58 @@ footer{padding:100px 0 30px}
 
     <div class="services">
       <div class="svc open reveal">
-        <button class="svc-btn" aria-expanded="true"><span class="svc-num">01</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16v-3M10 16v-6M14 16v-4M18 16V8M4 10l5-4 4 3 7-6M16 3h4v4"/></svg>Marketing Digital</span><span class="svc-icon"></span></button>
+        <button class="svc-btn" aria-expanded="true"><span class="svc-num">01</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Páginas web</span><span class="svc-icon"></span></button>
         <div class="svc-panel"><div><div class="svc-inner"><span></span>
-          <p>[COMPLETAR] Estrategia, campañas y contenido para que tu marca llegue a las personas correctas y venda más.</p>
-          <ul><li>Estrategia</li><li>Meta & Google Ads</li><li>Redes sociales</li><li>Reportes</li></ul>
+          <div>
+            <p>Elegí el tipo de sitio según lo que necesitás: presentar tu negocio, mostrar productos, recibir reservas o vender online. Todos con diseño personalizado y adaptado a celulares y computadoras.</p>
+            <a href="#webs" class="svc-link">Ver los 11 tipos de web →</a>
+          </div>
+          <ul><li>Landing pages</li><li>Webs institucionales</li><li>Catálogos</li><li>E-commerce</li><li>Reservas y turnos</li><li>Sistemas a medida</li></ul>
         </div></div></div>
       </div>
       <div class="svc reveal">
-        <button class="svc-btn" aria-expanded="false"><span class="svc-num">02</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Desarrollo Web</span><span class="svc-icon"></span></button>
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">02</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16v-3M10 16v-6M14 16v-4M18 16V8M4 10l5-4 4 3 7-6M16 3h4v4"/></svg>Marketing digital</span><span class="svc-icon"></span></button>
         <div class="svc-panel"><div><div class="svc-inner"><span></span>
-          <p>[COMPLETAR] Sitios y landing pages rápidas, claras y pensadas para convertir visitas en clientes.</p>
-          <ul><li>Sitios institucionales</li><li>Landing pages</li><li>E-commerce</li><li>SEO</li></ul>
+          <p>Organizamos y mejoramos la comunicación de tu negocio en redes sociales. El volumen de publicaciones, videos, plataformas y revisiones se define antes de comenzar.</p>
+          <ul><li>Calendario de publicaciones</li><li>Edición de videos</li><li>Optimización del perfil</li><li>Estrategia de crecimiento</li><li>Seguimiento</li></ul>
         </div></div></div>
       </div>
       <div class="svc reveal">
-        <button class="svc-btn" aria-expanded="false"><span class="svc-num">03</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Sistemas a Medida</span><span class="svc-icon"></span></button>
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">03</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Automatización e IA</span><span class="svc-icon"></span></button>
         <div class="svc-panel"><div><div class="svc-inner"><span></span>
-          <p>[COMPLETAR] Herramientas propias para tu negocio: paneles, gestión de clientes, turnos o stock.</p>
-          <ul><li>Paneles</li><li>CRM</li><li>Integraciones</li></ul>
+          <div>
+            <p><b style="color:var(--ink);font-weight:500">Automatizaciones sencillas:</b> reducimos tareas manuales, organizamos consultas y contactos, y conectamos las herramientas que ya usás.</p>
+            <p style="margin-top:12px"><b style="color:var(--ink);font-weight:500">Chatbot con inteligencia artificial:</b> un asistente virtual que responde consultas frecuentes y orienta a tus clientes, con la información de tu negocio.</p>
+          </div>
+          <ul><li>Flujos de trabajo</li><li>Organización de consultas</li><li>Integraciones</li><li>Chatbot con IA</li><li>Clasificación de consultas</li></ul>
         </div></div></div>
       </div>
       <div class="svc reveal">
-        <button class="svc-btn" aria-expanded="false"><span class="svc-num">04</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Automatización y Tecnología</span><span class="svc-icon"></span></button>
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">04</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Mantenimiento mensual</span><span class="svc-icon"></span></button>
         <div class="svc-panel"><div><div class="svc-inner"><span></span>
-          <p>[COMPLETAR] Automatizamos tareas repetitivas para que tu equipo se enfoque en lo importante.</p>
-          <ul><li>Email automático</li><li>Chatbots</li><li>Flujos de ventas</li><li>IA aplicada</li></ul>
+          <p>Mantenemos tu sitio actualizado, revisamos su funcionamiento y resolvemos tareas técnicas dentro de un alcance acordado. Es opcional y se adapta a cada tipo de sitio.</p>
+          <ul><li>Actualizaciones</li><li>Revisión general</li><li>Soporte técnico</li><li>Ajustes menores</li></ul>
         </div></div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= ELEGÍ TU WEB (didáctico) ================= -->
+<section id="webs" style="padding-top:40px">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="label reveal">Páginas web</span>
+        <h2 class="reveal">¿Qué web <em>necesitás?</em></h2>
+      </div>
+      <p class="lead reveal">Elegí tu objetivo y te mostramos qué tipo de sitio encaja mejor. Cada opción se puede consultar directo por WhatsApp.</p>
+    </div>
+    <div class="reveal">
+      <div class="chooser-filters" id="webFilters" role="tablist" aria-label="Objetivo"></div>
+      <p class="chooser-hint" id="webHint" aria-live="polite"></p>
+    </div>
+    <div class="webs" id="webGrid"></div>
   </div>
 </section>
 
@@ -491,14 +543,14 @@ footer{padding:100px 0 30px}
     <div class="process-sticky">
       <span class="label reveal">Proceso</span>
       <h2 class="reveal" style="margin:22px 0">Cuatro pasos. <em>Cero sorpresas.</em></h2>
-      <p class="lead reveal">[COMPLETAR] Sabés en todo momento en qué estamos trabajando y qué viene después.</p>
+      <p class="lead reveal">Antes de empezar dejamos todo claro, así sabés en cada momento qué estamos haciendo y qué viene después.</p>
     </div>
     <div class="steps" id="steps">
       <span class="fill" id="stepsFill"></span>
-      <div class="step"><span class="when">Semana 1</span><h3>Descubrir</h3><p>[COMPLETAR] Reunión inicial, auditoría de tus canales y análisis de tu competencia.</p></div>
-      <div class="step"><span class="when">Semana 2</span><h3>Diseñar</h3><p>[COMPLETAR] Te presentamos la estrategia: objetivos, mensajes, canales y presupuesto.</p></div>
-      <div class="step"><span class="when">Semana 3–4</span><h3>Lanzar</h3><p>[COMPLETAR] Producimos el contenido y salimos al aire con las primeras campañas.</p></div>
-      <div class="step"><span class="when">Mes 2 en adelante</span><h3>Escalar</h3><p>[COMPLETAR] Medimos cada semana, optimizamos lo que funciona y lo hacemos crecer.</p></div>
+      <div class="step"><span class="when">Paso 1</span><h3>Consulta</h3><p>Nos contás qué necesita tu negocio por WhatsApp y te ayudamos a elegir la solución adecuada.</p></div>
+      <div class="step"><span class="when">Paso 2</span><h3>Propuesta</h3><p>Confirmamos entregables, plazos, contenido que aportás, revisiones y funcionalidades.</p></div>
+      <div class="step"><span class="when">Paso 3</span><h3>Desarrollo</h3><p>Diseñamos y construimos tu proyecto, con revisiones para ajustarlo a lo que buscás.</p></div>
+      <div class="step"><span class="when">Paso 4</span><h3>Lanzamiento</h3><p>Publicamos, te capacitamos si hace falta y, si querés, seguimos con el mantenimiento mensual.</p></div>
     </div>
   </div>
 </section>
@@ -544,32 +596,6 @@ footer{padding:100px 0 30px}
   </div>
 </section>
 
-<!-- ================= CASOS ================= -->
-<section id="casos" style="padding-top:20px">
-  <div class="container">
-    <div class="head">
-      <div>
-        <span class="label reveal">Casos</span>
-        <h2 class="reveal">Historias que <em>crecieron.</em></h2>
-      </div>
-      <div style="justify-self:end" class="reveal"><a href="#" class="btn btn-line magnetic">Ver todos <span class="arr">→</span></a></div>
-    </div>
-    <div class="cases">
-      <a href="#" class="case reveal">
-        <!-- Agregar: <img src="img/caso-1.jpg" alt="..."> dentro de .case-media -->
-        <div class="case-media m1"><span>[Imagen del caso]</span></div>
-        <span class="case-tag">[Rubro]</span>
-        <div class="case-info"><div><h3>[Nombre del cliente]</h3><p>[Servicio] · [Año]</p></div><span class="case-metric">+[000]%</span></div>
-      </a>
-      <a href="#" class="case reveal">
-        <div class="case-media m2"><span>[Imagen del caso]</span></div>
-        <span class="case-tag">[Rubro]</span>
-        <div class="case-info"><div><h3>[Nombre del cliente]</h3><p>[Servicio] · [Año]</p></div><span class="case-metric">x[0]</span></div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FAQ ================= -->
 <section id="faq" style="padding-top:40px">
   <div class="container faq">
@@ -578,10 +604,11 @@ footer{padding:100px 0 30px}
       <h2 class="reveal" style="margin-top:22px">Lo que <em>todos</em> nos preguntan.</h2>
     </div>
     <div class="reveal">
-      <details open><summary>[COMPLETAR] ¿Cuánto tiempo tardan en verse resultados?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
-      <details><summary>[COMPLETAR] ¿Trabajan con empresas pequeñas?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
-      <details><summary>[COMPLETAR] ¿Cuál es la inversión mínima?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
-      <details><summary>[COMPLETAR] ¿Cómo me entero de los resultados?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
+      <details open><summary>¿La web se paga una sola vez?</summary><p>Sí. Los desarrollos web se abonan por única vez, según el alcance definido en la propuesta. Los servicios mensuales, como marketing o mantenimiento, se abonan por período y los contratás según lo que necesites.</p></details>
+      <details><summary>¿Qué incluye el mantenimiento mensual?</summary><p>Actualizaciones, revisión del funcionamiento y soporte técnico dentro de un alcance acordado. Nuevas secciones, cambios importantes o funciones adicionales se cotizan aparte.</p></details>
+      <details><summary>¿El dominio y el hosting están incluidos?</summary><p>No, salvo que se indique en la propuesta. Dominio, hosting, plataformas, licencias, comisiones de pago, APIs y consumo de herramientas de IA se contratan por separado.</p></details>
+      <details><summary>¿Por qué algunos servicios no tienen un precio fijo?</summary><p>Porque dependen de la cantidad de páginas, productos, integraciones y funcionalidades. Escribinos por WhatsApp y te armamos un presupuesto a medida.</p></details>
+      <details><summary>¿Cómo empezamos?</summary><p>Nos escribís por WhatsApp, te hacemos algunas preguntas y te enviamos una propuesta con entregables, plazos y revisiones. Cuando la aprobás, arrancamos.</p></details>
     </div>
   </div>
 </section>
@@ -593,12 +620,20 @@ footer{padding:100px 0 30px}
       <span class="cta-ring r1"></span><span class="cta-ring r2"></span><span class="cta-ring r3"></span>
       <span class="label">Disponibles para nuevos proyectos</span>
       <h2>Potenciá tu marca en el <em>mundo digital.</em></h2>
-      <p class="lead">[COMPLETAR] Dejanos tu email y te respondemos en menos de 24 horas.</p>
-      <!-- Conectar a Formspree, Google Forms, WhatsApp, etc. -->
+      <p class="lead">Contanos qué necesitás y te respondemos por WhatsApp.</p>
+      <!-- Abre WhatsApp con un mensaje armado con el nombre y el servicio elegido -->
       <form class="cta-form" id="ctaForm">
-        <input type="email" placeholder="tu@email.com" required aria-label="Email">
-        <button class="btn btn-dark" type="submit">Enviar <span class="arr">→</span></button>
+        <input type="text" name="nombre" placeholder="Tu nombre" required aria-label="Tu nombre">
+        <select name="servicio" aria-label="¿Qué necesitás?">
+          <option>Una página web</option>
+          <option>Marketing digital</option>
+          <option>Automatización o chatbot con IA</option>
+          <option>Mantenimiento de mi sitio</option>
+          <option>Todavía no sé, quiero asesoramiento</option>
+        </select>
+        <button class="btn btn-dark" type="submit">Escribir por WhatsApp <span class="arr">→</span></button>
       </form>
+      <p class="cta-phone">o escribinos directo al <a class="wa-link" href="#" target="_blank" rel="noopener">+54 9 3734 49-4040</a></p>
     </div>
   </div>
 </section>
@@ -609,17 +644,78 @@ footer{padding:100px 0 30px}
   <div class="container">
     <div class="foot">
       <div><a href="#" class="logo" aria-label="Aether Agency"><svg class="logo-mark"><use href="#aMark"/></svg><span class="logo-word">AETHER<small>AGENCY</small></span></a><p>Ideas que conectan. Soluciones que impulsan.</p></div>
-      <div><h4>Agencia</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#casos">Casos</a></li></ul></div>
+      <div><h4>Agencia</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="#webs">Tipos de web</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#faq">Preguntas</a></li></ul></div>
       <div><h4>Redes</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">TikTok</a></li></ul></div>
-      <div><h4>Contacto</h4><ul><li><a href="mailto:[email]">[email@aether.agency]</a></li><li><a href="#">[+54 9 000 000 0000]</a></li><li>[Ciudad, País]</li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="mailto:aetheragency@gmail.com">aetheragency@gmail.com</a></li><li><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp +54 9 3734 49-4040</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© <span id="year"></span> Aether Agency</span><span>[Política de privacidad]</span></div>
     <div class="big-word" aria-hidden="true">aether</div>
   </div>
 </footer>
 
+<a class="wa-float wa-link" href="#" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.3A9 9 0 1 1 21 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8c-1-.5-1.8-1.3-2.3-2.3l.8-1-1-2z" fill="currentColor" stroke="none"/></svg>
+</a>
+
 <script>
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- WhatsApp ---------- */
+const WA_NUMBER = '5493734494040'; // 54 (Argentina) + 9 (celular) + 3734494040
+const waUrl = text => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+document.querySelectorAll('.wa-link').forEach(a => a.href = waUrl('¡Hola Aether! Quiero hacer una consulta.'));
+
+/* ---------- Elegí tu web ---------- */
+const goals = [
+  { id:'todas',     name:'Ver todas',            hint:'Estas son <b>todas las opciones</b>. Elegí un objetivo para filtrar.' },
+  { id:'presentar', name:'Presentar mi negocio', hint:'Ideal si querés que <b>te conozcan y te consulten</b>.' },
+  { id:'productos', name:'Mostrar productos',    hint:'Para mostrar lo que ofrecés y <b>recibir consultas</b>, sin cobrar dentro de la web.' },
+  { id:'vender',    name:'Vender online',        hint:'Para <b>cobrar dentro de la web</b> con carrito, pagos y envíos.' },
+  { id:'reservas',  name:'Recibir reservas',     hint:'Para que tus clientes <b>saquen turno solos</b>, a cualquier hora.' },
+  { id:'medida',    name:'Algo a medida',        hint:'Cuando necesitás una <b>herramienta propia</b> para tu empresa o tus cursos.' }
+];
+const webs = [
+  { goal:'presentar', name:'Landing Page Profesional', desc:'Una página directa para presentar un negocio o servicio y convertir visitas en consultas.',
+    items:['Diseño personalizado y adaptable a celulares y computadoras','Secciones informativas, botón de WhatsApp y formulario de contacto','Animaciones e interacciones básicas y publicación inicial'] },
+  { goal:'presentar', name:'Landing Page Premium', desc:'Una presentación web más elaborada, con mayor trabajo visual e interacciones.',
+    items:['Diseño personalizado y experiencia visual avanzada','Animaciones, formularios e integraciones acordadas','Adaptación a dispositivos y optimización de rendimiento'] },
+  { goal:'productos', name:'Catálogo digital', desc:'Para mostrar productos o servicios online y recibir consultas, sin necesidad de cobrar dentro de la web.',
+    items:['Productos organizados por categorías, imágenes y descripciones','Buscador o filtros según el proyecto y consultas por WhatsApp','Panel de edición opcional, según alcance'] },
+  { goal:'presentar', name:'Web institucional', desc:'Sitio para presentar una empresa, profesional o institución de manera completa y confiable.',
+    items:['Secciones de inicio, empresa, servicios, trabajos y contacto','Galería, ubicación e integración con WhatsApp','Diseño adaptable y estructura preparada para buscadores'] },
+  { goal:'vender', name:'E-commerce básico', desc:'Tienda online para publicar productos, recibir pedidos y comenzar a vender por Internet.',
+    items:['Catálogo inicial, carrito de compras y checkout','Configuración inicial de medios de pago y envíos compatibles','Carga inicial acotada de productos y capacitación básica'] },
+  { goal:'vender', name:'E-commerce profesional', desc:'Tienda online más completa para comercios que necesitan administrar ventas y productos.',
+    items:['Catálogo con categorías, filtros y variantes','Carrito, pagos, envíos y gestión de pedidos','Panel administrativo, promociones y descuentos'] },
+  { goal:'reservas', name:'Web de reservas y turnos', desc:'Para que los clientes consulten disponibilidad y soliciten turnos o reservas online.',
+    items:['Servicios, calendario y selección de horarios','Formulario de reserva y confirmaciones según integración','Panel de administración según funcionalidades acordadas'] },
+  { goal:'productos', name:'Web inmobiliaria', desc:'Portal para publicar propiedades y facilitar consultas de potenciales compradores o inquilinos.',
+    items:['Fichas de propiedades con fotos, descripción y datos','Filtros por zona, tipo y características','Formularios de consulta y contacto por WhatsApp'] },
+  { goal:'presentar', name:'Web corporativa premium', desc:'Sitio de mayor alcance para empresas que buscan una presencia digital sólida y personalizada.',
+    items:['Diseño visual avanzado y múltiples secciones','Presentación de servicios, equipo, proyectos y casos','Integraciones y funcionalidades definidas para cada empresa'] },
+  { goal:'medida', name:'Plataforma educativa', desc:'Espacio online para ofrecer cursos, materiales y contenidos de formación.',
+    items:['Organización de cursos, módulos y recursos','Acceso de usuarios y funciones de seguimiento según alcance','Integración de pagos o inscripción cuando corresponda'] },
+  { goal:'medida', name:'Sistema web personalizado', desc:'Herramienta hecha a medida para administrar procesos internos de una empresa.',
+    items:['Gestión de clientes, ventas, pedidos o inventario','Usuarios, permisos, bases de datos y paneles','Funciones y reportes definidos según el proceso del negocio'] }
+];
+const webFilters = document.getElementById('webFilters'), webGrid = document.getElementById('webGrid'), webHint = document.getElementById('webHint');
+goals.forEach(g => webFilters.insertAdjacentHTML('beforeend', `<button class="tab" role="tab" data-goal="${g.id}">${g.name}</button>`));
+function showWebs(goal) {
+  webFilters.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t.dataset.goal === goal));
+  const list = goal === 'todas' ? webs : webs.filter(w => w.goal === goal);
+  const g = goals.find(x => x.id === goal);
+  webHint.innerHTML = `${g.hint} · ${list.length} ${list.length === 1 ? 'opción' : 'opciones'}`;
+  webGrid.innerHTML = list.map((w, i) => `
+    <article class="web" style="animation-delay:${i * 60}ms">
+      <span class="kind">${goals.find(x => x.id === w.goal).name}</span>
+      <h3>${w.name}</h3>
+      <p>${w.desc}</p>
+      <ul>${w.items.map(it => `<li>${it}</li>`).join('')}</ul>
+      <a class="ask" href="${waUrl(`¡Hola Aether! Quiero consultar por: ${w.name}`)}" target="_blank" rel="noopener">Consultar por WhatsApp <span>→</span></a>
+    </article>`).join('');
+}
+webFilters.addEventListener('click', e => { const t = e.target.closest('[data-goal]'); if (t) showWebs(t.dataset.goal); });
+showWebs('todas');
 document.getElementById('year').textContent = new Date().getFullYear();
 requestAnimationFrame(() => document.body.classList.add('loaded'));
 
@@ -713,7 +809,9 @@ calc();
 
 /* ---------- Formulario ---------- */
 document.getElementById('ctaForm').addEventListener('submit', e => {
-  e.preventDefault(); e.target.querySelector('button').innerHTML = '¡Gracias! <span class="arr">✓</span>';
+  e.preventDefault();
+  const f = e.target;
+  window.open(waUrl(`¡Hola Aether! Soy ${f.nombre.value.trim()}. Me interesa: ${f.servicio.value}.`), '_blank', 'noopener');
 });
 
 /* ---------- Botones magnéticos (solo con mouse) ---------- */
@@ -728,27 +826,47 @@ if (matchMedia('(hover:hover)').matches && !reduce) {
 
 /* ---------- Scroll: progreso, nav, parallax, manifiesto, línea del proceso ---------- */
 const progress = $('progress'), navWrap = $('navWrap'), parallax = document.querySelectorAll('[data-speed]');
-const steps = document.querySelectorAll('.step'), stepsBox = $('steps'), fill = $('stepsFill');
-let lastY = 0, ticking = false;
+const steps = [...document.querySelectorAll('.step')], stepsBox = $('steps'), fill = $('stepsFill');
+const hero = document.querySelector('.hero');
+// Rendimiento: cada efecto solo se calcula mientras su sección está en pantalla
+const visible = new Set();
+const vis = new IntersectionObserver(es => es.forEach(e => {
+  e.isIntersecting ? visible.add(e.target) : visible.delete(e.target);
+  if (e.target === hero) hero.classList.toggle('off', !e.isIntersecting);
+  requestAnimationFrame(onScroll);
+}));
+[hero, man, stepsBox].forEach(el => vis.observe(el));
+
+let lastY = 0, ticking = false, maxScroll = 1, wordsOn = -1, h = innerHeight;
+const measure = () => { h = innerHeight; maxScroll = Math.max(document.documentElement.scrollHeight - h, 1); };
 function onScroll() {
-  const y = scrollY, h = innerHeight;
-  progress.style.transform = `scaleX(${y / (document.documentElement.scrollHeight - h)})`;
+  const y = scrollY;
+  // 1) Primero se leen las medidas (evita recalcular el layout varias veces)
+  const mr = visible.has(man) ? man.getBoundingClientRect() : null;
+  const sr = visible.has(stepsBox) ? stepsBox.getBoundingClientRect() : null;
+  const stepTops = sr ? steps.map(s => s.getBoundingClientRect().top) : null;
+
+  // 2) Después se escriben los cambios
+  progress.style.transform = `scaleX(${y / maxScroll})`;
   navWrap.classList.toggle('hide', y > lastY && y > 300 && !nav.classList.contains('open'));
   lastY = y;
-  if (!reduce) parallax.forEach(el => el.style.transform = `translate3d(0, ${y * el.dataset.speed}px, 0)`);
+  if (!reduce && visible.has(hero)) parallax.forEach(el => el.style.transform = `translate3d(0,${(y * el.dataset.speed).toFixed(1)}px,0)`);
 
-  const mr = man.getBoundingClientRect();
-  const mp = Math.min(Math.max((h * .85 - mr.top) / (mr.height + h * .35), 0), 1);
-  words.forEach((w, i) => w.classList.toggle('on', reduce || i < mp * words.length));
-
-  const sr = stepsBox.getBoundingClientRect();
-  fill.style.transform = `scaleY(${Math.min(Math.max((h * .55 - sr.top) / sr.height, 0), 1)})`;
-  steps.forEach(s => s.classList.toggle('on', s.getBoundingClientRect().top < h * .55));
+  if (mr) {
+    const mp = Math.min(Math.max((h * .85 - mr.top) / (mr.height + h * .35), 0), 1);
+    const n = reduce ? words.length : Math.ceil(mp * words.length);
+    if (n !== wordsOn) { words.forEach((w, i) => w.classList.toggle('on', i < n)); wordsOn = n; }
+  }
+  if (sr) {
+    fill.style.transform = `scaleY(${Math.min(Math.max((h * .55 - sr.top) / sr.height, 0), 1)})`;
+    steps.forEach((s, i) => s.classList.toggle('on', stepTops[i] < h * .55));
+  }
   ticking = false;
 }
 addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
-addEventListener('resize', onScroll);
-onScroll();
+addEventListener('resize', () => { measure(); onScroll(); });
+addEventListener('load', measure);
+measure(); onScroll();
 </script>
 </body>
 </html>
