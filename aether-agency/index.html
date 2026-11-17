@@ -3,446 +3,585 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aether Agency — Marketing que eleva marcas</title>
+<title>Aether Agency — Marketing · Tecnología · Resultados</title>
 <meta name="description" content="[COMPLETAR] Descripción corta de Aether Agency para buscadores.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=Michroma&display=swap" rel="stylesheet">
 <style>
-/* =========================================================
-   AETHER AGENCY — PLANTILLA
-   Colores y medidas principales: editar en :root
-   Textos a completar marcados con [COMPLETAR]
-   ========================================================= */
+/* ==========================================================================
+   AETHER AGENCY — PLANTILLA v2 (minimalista, clara y dinámica)
+
+   PAUTAS DE DISEÑO (según el manual de marca)
+   · Paleta de marca: #172B4D navy · #14B8A6 teal · #E2E8F0 · #F8FAFC · #475569.
+     Fondo casi negro azulado, texto #F8FAFC, un solo acento: el teal.
+     #475569 solo para bordes/detalles (no alcanza contraste como texto).
+   · Tipografía: Plus Jakarta Sans para títulos, Inter para leer, Michroma para
+     el logotipo. La palabra clave de cada título va en cursiva teal (como
+     "impulsan." en el manual). Máximo una por título.
+   · Espacio: secciones de 140px (90px en celular). Si dudás, agregá aire.
+   · Vidrio: solo en elementos que flotan sobre otros (menú, chips, píldoras).
+
+   PAUTAS DE ANIMACIÓN
+   · Una sola curva para todo: --ease (salida suave, sin rebote).
+   · Entradas: 900ms, desplazamiento de 32px, escalonadas de a 80ms.
+   · Microinteracciones (hover/click): 250–400ms.
+   · Todo movimiento se apaga con prefers-reduced-motion.
+
+   Textos a completar: buscar [COMPLETAR] y [ ].
+   ========================================================================== */
 :root{
-  --bg:#07070f;
-  --bg-2:#0d0d1c;
-  --text:#f4f3ff;
-  --muted:#a9a8c4;
-  --accent:#8b7bff;      /* violeta */
-  --accent-2:#3ee6c8;    /* aqua */
-  --accent-3:#ff7ac6;    /* rosa */
-  --glass:rgba(255,255,255,.06);
-  --glass-strong:rgba(255,255,255,.10);
-  --glass-border:rgba(255,255,255,.14);
-  --blur:18px;
-  --radius:24px;
-  --radius-lg:36px;
-  --max:1200px;
-  --font-display:'Space Grotesk',system-ui,sans-serif;
-  --font-body:'Inter',system-ui,sans-serif;
+  --bg:#050b14;
+  --surface:#0b1626;
+  --navy:#172b4d;
+  --ink:#f8fafc;
+  --ink-2:#e2e8f0;
+  --muted:#94a3b8;
+  --slate:#475569;
+  --line:rgba(226,232,240,.10);
+  --accent:#14b8a6;
+  --accent-2:#2dd4bf;
+  --accent-soft:rgba(20,184,166,.14);
+  --radius:22px;
+  --max:1240px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --serif:'Plus Jakarta Sans',system-ui,sans-serif;
+  --display:'Plus Jakarta Sans',system-ui,sans-serif;
+  --brand:'Michroma',sans-serif;
+  --sans:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:var(--font-body);
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;display:block}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
-
-/* ---------- Fondo animado (orbes) ---------- */
-.bg-orbs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
-.orb-1{width:520px;height:520px;background:var(--accent);top:-120px;left:-120px;animation:float1 22s ease-in-out infinite}
-.orb-2{width:460px;height:460px;background:var(--accent-2);top:30%;right:-160px;animation:float2 26s ease-in-out infinite;opacity:.35}
-.orb-3{width:420px;height:420px;background:var(--accent-3);bottom:-160px;left:30%;animation:float3 30s ease-in-out infinite;opacity:.35}
-.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(180px,140px)}}
-@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-200px,120px)}}
-@keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(160px,-160px)}}
-
-/* ---------- Glass base ---------- */
-.glass{
-  background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
-  border:1px solid var(--glass-border);
-  backdrop-filter:blur(var(--blur)) saturate(140%);
-  -webkit-backdrop-filter:blur(var(--blur)) saturate(140%);
-  border-radius:var(--radius);
-  box-shadow:0 10px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.12);
-}
-/* brillo que sigue al mouse */
-.spot{position:relative;overflow:hidden}
-.spot::before{
-  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
-  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 45%);
-}
-.spot:hover::before{opacity:1}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%;display:block}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 32px}
+::selection{background:var(--accent);color:var(--bg)}
 
 /* ---------- Tipografía ---------- */
-h1,h2,h3{font-family:var(--font-display);line-height:1.05;letter-spacing:-.03em;font-weight:600}
-h1{font-size:clamp(2.8rem,8vw,6.4rem)}
-h2{font-size:clamp(2.2rem,5vw,4rem)}
-h3{font-size:1.35rem;letter-spacing:-.01em}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500;color:var(--muted);
-  padding:6px 14px;border-radius:999px;border:1px solid var(--glass-border);background:var(--glass);backdrop-filter:blur(10px)}
-.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2)}
-.gradient-text{background:linear-gradient(100deg,var(--accent) 0%,var(--accent-3) 50%,var(--accent-2) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:shine 8s linear infinite}
-@keyframes shine{to{background-position:200% center}}
-.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);max-width:620px}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.035em;line-height:1.04}
+h1{font-size:clamp(3rem,8.4vw,7.6rem)}
+h2{font-size:clamp(2.3rem,5.2vw,4.4rem)}
+h3{font-size:1.3rem;letter-spacing:-.015em;line-height:1.25}
+em,.serif{font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.035em;color:var(--accent-2)}
+.label{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.label::before{content:"";width:18px;height:1px;background:currentColor}
+.lead{font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--muted);max-width:540px}
 
 /* ---------- Botones ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.95rem;
-  transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;border:0;font-family:inherit}
-.btn-primary{background:var(--text);color:var(--bg)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(139,123,255,.45)}
-.btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--glass-border);backdrop-filter:blur(10px)}
-.btn-ghost:hover{background:var(--glass-strong);transform:translateY(-2px)}
-.btn .arrow{transition:transform .25s}
-.btn:hover .arrow{transform:translateX(4px)}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;border-radius:999px;font-weight:500;font-size:.95rem;
+  transition:background .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);will-change:transform}
+.btn-dark{background:var(--accent);color:#041014;font-weight:600}
+.btn-dark:hover{background:var(--accent-2);box-shadow:0 14px 34px -10px rgba(20,184,166,.6)}
+.btn-line{border:1px solid rgba(20,184,166,.5);background:rgba(20,184,166,.04);color:var(--ink)}
+.btn-line:hover{background:rgba(20,184,166,.12);border-color:var(--accent-2)}
+.btn .arr{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(4,16,20,.16);transition:transform .35s var(--ease)}
+.btn-line .arr{background:var(--accent-soft)}
+.btn:hover .arr{transform:translateX(3px) rotate(-45deg)}
 
-/* ---------- Navegación ---------- */
-.nav-wrap{position:fixed;top:16px;left:0;right:0;z-index:100;padding:0 16px}
-.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;
-  padding:10px 10px 10px 22px;border-radius:999px;transition:background .3s}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em}
-.logo-mark{width:30px;height:30px;border-radius:50%;
-  background:conic-gradient(from 180deg,var(--accent),var(--accent-3),var(--accent-2),var(--accent));
-  box-shadow:0 0 20px rgba(139,123,255,.6);position:relative}
-.logo-mark::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--bg)}
-.nav-links{display:flex;gap:4px;list-style:none}
-.nav-links a{padding:8px 16px;border-radius:999px;font-size:.92rem;color:var(--muted);transition:.2s}
-.nav-links a:hover{color:var(--text);background:var(--glass)}
-.nav .btn{padding:10px 20px}
-.menu-toggle{display:none;background:none;border:0;color:var(--text);width:42px;height:42px;cursor:pointer}
-.menu-toggle span{display:block;width:20px;height:2px;background:currentColor;margin:5px auto;transition:.3s}
+/* ---------- Barra de progreso de lectura ---------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);z-index:200}
+
+/* ---------- Navegación (vidrio claro) ---------- */
+.nav-wrap{position:fixed;top:18px;left:0;right:0;z-index:100;padding:0 16px;transition:transform .5s var(--ease)}
+.nav-wrap.hide{transform:translateY(-120%)}
+.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:8px 8px 8px 20px;border-radius:999px;background:rgba(11,22,38,.55);border:1px solid var(--line);
+  backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);box-shadow:0 8px 30px -12px rgba(0,0,0,.5)}
+/* Logo: reemplazable por img/aether-logo.svg cuando tengas el archivo original */
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:30px;height:26px;flex:none}
+.logo-word{font-family:var(--brand);font-size:.95rem;letter-spacing:.32em;line-height:1}
+.logo-word small{display:block;font-size:.42rem;letter-spacing:1.05em;color:var(--accent-2);margin-top:5px}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:8px 15px;border-radius:999px;font-size:.9rem;color:var(--muted);transition:.25s}
+.nav-links a:hover{color:var(--ink);background:rgba(226,232,240,.06)}
+.nav .btn{padding:10px 18px}
+.menu-toggle{display:none;width:42px;height:42px;border-radius:50%}
+.menu-toggle span{display:block;width:18px;height:1.5px;background:var(--ink);margin:5px auto;transition:.35s var(--ease)}
 
 /* ---------- Secciones ---------- */
-section{padding:120px 0;position:relative}
-.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
-.section-head h2{max-width:700px}
+section{padding:140px 0;position:relative}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:64px}
+.head .label{margin-bottom:22px}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:140px}
-.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
-.hero h1{margin:24px 0}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
-.hero-visual{position:relative;height:520px}
-.float-card{position:absolute;padding:22px;animation:bob 6s ease-in-out infinite}
-.float-card:nth-child(2){animation-delay:-2s}
-.float-card:nth-child(3){animation-delay:-4s}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.fc-main{inset:40px 30px 90px 30px;display:flex;flex-direction:column;justify-content:space-between}
-.fc-main .chart{display:flex;align-items:flex-end;gap:10px;height:160px}
-.fc-main .bar{flex:1;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--accent),rgba(139,123,255,.2));
-  transform-origin:bottom;animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}
-.fc-main .bar:nth-child(even){background:linear-gradient(180deg,var(--accent-2),rgba(62,230,200,.15))}
-@keyframes grow{from{transform:scaleY(0)}}
-.fc-label{font-size:.8rem;color:var(--muted)}
-.fc-value{font-family:var(--font-display);font-size:2.2rem;font-weight:600}
-.fc-up{color:var(--accent-2);font-size:.9rem;font-weight:600}
-.fc-small{width:200px}
-.fc-a{top:0;right:-10px}
-.fc-b{bottom:20px;left:-20px;display:flex;align-items:center;gap:14px;width:auto}
-.avatar-stack{display:flex}
-.avatar-stack i{width:34px;height:34px;border-radius:50%;border:2px solid var(--bg-2);margin-left:-10px;display:block}
-.avatar-stack i:first-child{margin-left:0;background:var(--accent)}
-.avatar-stack i:nth-child(2){background:var(--accent-3)}
-.avatar-stack i:nth-child(3){background:var(--accent-2)}
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:150px 0 70px;overflow:hidden}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line > span{display:inline-block;transform:translateY(105%);transition:transform 1.2s var(--ease)}
+.loaded .hero h1 .line > span{transform:none}
+.hero h1 .line:nth-child(2) > span{transition-delay:.12s}
+.hero h1 .line:nth-child(3) > span{transition-delay:.24s}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:56px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero .container{position:relative;z-index:2}
+/* Ondas de luz (como el fondo del logo) */
+.waves{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.waves path{fill:none;stroke-linecap:round}
+.waves .glow{stroke:url(#waveGrad);stroke-width:1.6;filter:url(#blurGlow);stroke-dasharray:900 2600;animation:flow 9s linear infinite}
+.waves .glow.g2{animation-duration:13s;animation-delay:-4s;opacity:.7}
+.waves .thin{stroke:rgba(45,212,191,.16);stroke-width:1}
+@keyframes flow{from{stroke-dashoffset:3500}to{stroke-dashoffset:0}}
+/* Planeta con borde de luz (como el mockup) */
+.planet{position:absolute;width:900px;height:900px;border-radius:50%;right:-380px;bottom:-560px;z-index:0;will-change:transform;
+  background:radial-gradient(circle at 35% 25%,#123a52 0%,#0a1a2c 45%,#050b14 70%);
+  box-shadow:inset 0 2px 0 rgba(45,212,191,.55),inset 0 30px 80px -20px rgba(20,184,166,.35),0 -20px 120px -30px rgba(20,184,166,.45)}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;will-change:transform}
+.blob.b1{width:520px;height:520px;background:rgba(20,184,166,.18);top:-10%;right:-8%}
+.blob.b3{width:420px;height:420px;background:rgba(23,43,77,.8);top:30%;left:-12%}
+.chip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;font-size:.85rem;
+  background:rgba(11,22,38,.5);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);will-change:transform}
+.chip i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.8rem;background:var(--accent-soft);color:var(--accent-2)}
+.chip strong{font-weight:600}
+.chip.c1{top:60%;right:6%}
+.chip.c2{top:74%;right:24%}
+.scroll-hint{display:flex;align-items:center;gap:12px;font-size:.82rem;color:var(--muted)}
+.scroll-hint .mouse{width:22px;height:34px;border:1.5px solid var(--muted);border-radius:12px;position:relative}
+.scroll-hint .mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:6px;border-radius:2px;background:var(--muted);transform:translateX(-50%);animation:wheel 1.8s var(--ease) infinite}
+@keyframes wheel{0%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,12px)}}
 
-/* MARQUEE LOGOS */
-.logos{padding:40px 0 80px}
-.logos p{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:28px}
-.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
-.marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 30s linear infinite}
-.marquee-track span{font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:rgba(255,255,255,.35);white-space:nowrap}
-@keyframes scroll{to{transform:translateX(-50%)}}
+/* ---------- LOGOS ---------- */
+.logos{padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:72px;width:max-content;animation:marquee 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--display);font-size:1.4rem;font-weight:500;letter-spacing:-.03em;color:rgba(226,232,240,.28);white-space:nowrap;transition:color .3s}
+.track span:hover{color:var(--ink)}
+.track span:nth-child(odd){font-style:italic}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-/* SERVICIOS */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.service{padding:34px;min-height:300px;display:flex;flex-direction:column;transition:transform .35s,border-color .35s}
-.service:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.28)}
-.service.wide{grid-column:span 2}
-.icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:auto;
-  background:linear-gradient(135deg,rgba(139,123,255,.35),rgba(62,230,200,.2));border:1px solid var(--glass-border)}
-.icon svg{width:24px;height:24px;stroke:var(--text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.service h3{margin:28px 0 10px}
-.service p{color:var(--muted);font-size:.96rem}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.tags span{font-size:.78rem;padding:5px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-border);color:var(--muted)}
+/* ---------- MANIFIESTO (palabras que se encienden con el scroll) ---------- */
+.manifesto p{font-family:var(--display);font-size:clamp(1.8rem,4vw,3.4rem);line-height:1.18;letter-spacing:-.03em;font-weight:500;max-width:1080px}
+.manifesto .w{opacity:.14;transition:opacity .25s linear}
+.manifesto .w.on{opacity:1}
 
-/* PROCESO */
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
-.step{padding:30px;position:relative}
-.step::before{counter-increment:step;content:"0" counter(step);font-family:var(--font-display);font-size:3.2rem;font-weight:700;
-  display:block;margin-bottom:40px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.05));-webkit-background-clip:text;background-clip:text;color:transparent}
-.step h3{margin-bottom:8px}
-.step p{color:var(--muted);font-size:.94rem}
+/* ---------- SERVICIOS (acordeón) ---------- */
+.services{border-top:1px solid var(--line)}
+.svc{border-bottom:1px solid var(--line)}
+.svc-btn{width:100%;display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:20px;padding:30px 0;text-align:left}
+.svc-num{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.svc-title{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.03em;font-weight:500;transition:transform .45s var(--ease),color .3s;display:flex;align-items:center;gap:18px}
+.svc-title svg{width:30px;height:30px;flex:none;stroke:var(--accent-2);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.svc-btn:hover .svc-title{transform:translateX(12px)}
+.svc-icon{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .35s var(--ease),transform .45s var(--ease),border-color .35s}
+.svc-icon::before,.svc-icon::after{content:"";position:absolute;width:14px;height:1.5px;background:var(--ink);transition:transform .45s var(--ease),background .3s}
+.svc-icon::after{transform:rotate(90deg)}
+.svc-icon{position:relative}
+.svc.open .svc-icon{background:var(--accent);border-color:var(--accent)}
+.svc.open .svc-icon::before,.svc.open .svc-icon::after{background:var(--bg)}
+.svc.open .svc-icon::after{transform:rotate(0)}
+.svc.open .svc-title{color:var(--accent-2)}
+.svc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.svc.open .svc-panel{grid-template-rows:1fr}
+.svc-panel > div{overflow:hidden}
+.svc-inner{display:grid;grid-template-columns:70px 1.2fr 1fr;gap:20px;padding-bottom:36px}
+.svc-inner p{color:var(--muted);max-width:480px}
+.svc-inner ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.svc-inner li{font-size:.82rem;padding:7px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
 
-/* STATS */
-.stats-panel{padding:64px;border-radius:var(--radius-lg);display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:left}
-.stat .num{font-family:var(--font-display);font-size:clamp(2.6rem,5vw,4rem);font-weight:600;letter-spacing:-.04em}
-.stat .lbl{color:var(--muted);font-size:.95rem}
+/* ---------- CÓMO FUNCIONA (embudo interactivo) ---------- */
+.learn{background:linear-gradient(160deg,rgba(23,43,77,.55),rgba(11,22,38,.6));border:1px solid var(--line);border-radius:36px;padding:56px;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 40px 100px -50px rgba(0,0,0,.8),inset 0 1px 0 rgba(226,232,240,.06)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 30px}
+.tab{padding:10px 18px;border-radius:999px;border:1px solid var(--line);font-size:.9rem;transition:.3s var(--ease)}
+.tab:hover{border-color:var(--accent)}
+.tab[aria-selected="true"]{background:var(--accent);color:#041014;border-color:var(--accent);font-weight:600}
+.tab-content{min-height:190px}
+.tab-content h3{font-size:1.7rem;margin-bottom:12px}
+.tab-content p{color:var(--muted)}
+.tab-content .tip{margin-top:18px;padding:14px 18px;border-radius:14px;background:var(--accent-soft);font-size:.92rem;color:var(--ink-2);border-left:2px solid var(--accent)}
+.tab-content .tip b{font-weight:600}
+.fade-swap{animation:swap .55s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateY(12px)}}
+.funnel{display:flex;flex-direction:column;align-items:center;gap:10px}
+.f-step{height:64px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:.9rem;
+  background:rgba(5,11,20,.6);border:1px solid var(--line);color:var(--muted);transition:background .5s var(--ease),color .5s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease);cursor:pointer}
+.f-step:nth-child(1){width:100%}.f-step:nth-child(2){width:84%}.f-step:nth-child(3){width:68%}.f-step:nth-child(4){width:52%}
+.f-step b{font-weight:600;color:var(--ink)}
+.f-step.active{background:var(--accent);border-color:var(--accent);color:rgba(4,16,20,.75);transform:scale(1.03);box-shadow:0 18px 50px -14px rgba(20,184,166,.7)}
+.f-step.active b{color:#041014}
 
-/* CASOS */
-.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.case{padding:14px;transition:transform .35s}
-.case:hover{transform:translateY(-6px)}
-.case-media{aspect-ratio:16/10;border-radius:16px;position:relative;overflow:hidden;display:grid;place-items:center;color:rgba(255,255,255,.6);font-size:.9rem}
-.case-media.m1{background:linear-gradient(135deg,#3b2fbf,#ff7ac6)}
-.case-media.m2{background:linear-gradient(135deg,#0f8f7d,#8b7bff)}
-.case-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.case:hover .case-media img{transform:scale(1.05)}
-.case-body{padding:22px 12px 12px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-.case-body p{color:var(--muted);font-size:.92rem}
-.case-metric{font-family:var(--font-display);font-size:1.8rem;font-weight:600;color:var(--accent-2);white-space:nowrap}
+/* ---------- PROCESO (columna fija + línea que se llena) ---------- */
+.process{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+.process-sticky{position:sticky;top:130px;align-self:start}
+.steps{position:relative;padding-left:48px}
+.steps::before,.steps .fill{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:1.5px;background:var(--line)}
+.steps .fill{background:var(--accent);transform-origin:top;transform:scaleY(0);bottom:6px}
+.step{position:relative;padding:0 0 72px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-43px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:1.5px solid var(--line);transition:.45s var(--ease)}
+.step.on::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.step .when{font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.step h3{font-size:1.8rem;margin:6px 0 10px}
+.step p{color:var(--muted);max-width:440px}
 
-/* TESTIMONIO */
-.testimonial{padding:64px;border-radius:var(--radius-lg);text-align:center}
-.testimonial blockquote{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.25;letter-spacing:-.02em;max-width:900px;margin:0 auto 32px}
-.author{display:inline-flex;align-items:center;gap:14px;text-align:left}
-.author .ph{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-3))}
-.author small{color:var(--muted);display:block}
+/* ---------- CALCULADORA ---------- */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--surface);border-radius:var(--radius);padding:40px;border:1px solid var(--line)}
+.field{margin-bottom:30px}
+.field:last-child{margin-bottom:0}
+.field-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.field-top span{color:var(--muted);font-size:.92rem}
+.field-top{gap:16px}
+.field-top output{font-size:1.3rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;outline:none;
+  background:linear-gradient(90deg,var(--accent) var(--p,50%),var(--line) var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid var(--accent);box-shadow:0 4px 12px rgba(91,91,214,.3);cursor:grab;transition:transform .2s}
+input[type=range]::-webkit-slider-thumb:active{transform:scale(1.2);cursor:grabbing}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:1.5px solid var(--accent);cursor:grab}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 6px var(--accent-soft)}
+.results{background:radial-gradient(120% 100% at 100% 0%,rgba(20,184,166,.28),transparent 60%),var(--navy);color:var(--ink);border-color:rgba(20,184,166,.25);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.results .label{color:rgba(255,255,255,.55)}
+.big{font-size:clamp(3rem,6vw,5rem);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:.35em;color:rgba(255,255,255,.55);letter-spacing:0;margin-left:6px}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.flow div{padding:16px;border-radius:14px;background:rgba(255,255,255,.07)}
+.flow b{display:block;font-size:1.25rem;font-weight:500;font-variant-numeric:tabular-nums}
+.flow span{font-size:.78rem;color:rgba(255,255,255,.55)}
+.note{font-size:.78rem;color:rgba(255,255,255,.45)}
 
-/* CTA */
-.cta{padding:90px 64px;border-radius:var(--radius-lg);text-align:center;position:relative;overflow:hidden}
-.cta::after{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:var(--accent);filter:blur(120px);opacity:.35;
-  left:50%;top:60%;transform:translateX(-50%);z-index:-1}
-.cta h2{max-width:800px;margin:0 auto 20px}
-.cta .lead{margin:0 auto 36px}
-.cta-form{display:flex;gap:10px;max-width:520px;margin:0 auto;padding:6px;border-radius:999px}
-.cta-form input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font:inherit;padding:0 18px;min-width:0}
-.cta-form input::placeholder{color:var(--muted)}
+/* ---------- CASOS ---------- */
+.cases{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.case{display:block;border-radius:28px;overflow:hidden;position:relative}
+.case-media{aspect-ratio:4/3;overflow:hidden;border-radius:28px;position:relative;display:grid;place-items:center;font-size:.9rem;color:rgba(226,232,240,.4);border:1px solid var(--line)}
+.case:nth-child(2) .case-media{aspect-ratio:3/4}
+.case-media.m1{background:radial-gradient(90% 90% at 80% 10%,rgba(20,184,166,.45),transparent 60%),var(--navy)}
+.case-media.m2{background:radial-gradient(90% 90% at 20% 90%,rgba(20,184,166,.35),transparent 60%),#0d1f36}
+.case-media > *{transition:transform 1s var(--ease)}
+.case-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case:hover .case-media > *{transform:scale(1.05)}
+.case-tag{position:absolute;left:18px;top:18px;padding:7px 14px;border-radius:999px;font-size:.8rem;background:rgba(5,11,20,.55);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.case-info{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 6px}
+.case-info p{color:var(--muted);font-size:.92rem}
+.case-metric{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2rem;color:var(--accent-2);line-height:1}
 
-/* FOOTER */
-footer{padding:80px 0 40px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid var(--glass-border)}
-.footer-grid p{color:var(--muted);margin-top:16px;max-width:300px;font-size:.94rem}
-.footer-grid h4{font-size:.85rem;color:var(--muted);font-weight:500;margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em}
-.footer-grid ul{list-style:none;display:grid;gap:10px}
-.footer-grid a{transition:color .2s}
-.footer-grid a:hover{color:var(--accent-2)}
-.footer-bottom{display:flex;justify-content:space-between;padding-top:30px;color:var(--muted);font-size:.85rem;flex-wrap:wrap;gap:12px}
-.big-word{font-family:var(--font-display);font-weight:700;font-size:clamp(4rem,19vw,17rem);letter-spacing:-.06em;line-height:.8;text-align:center;
-  margin-top:60px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+/* ---------- FAQ ---------- */
+.faq{display:grid;grid-template-columns:1fr 1.4fr;gap:80px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;cursor:pointer;font-size:1.15rem;font-weight:500;letter-spacing:-.015em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;font-weight:300;transition:transform .4s var(--ease);color:var(--muted)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);padding:0 0 26px;max-width:600px;animation:swap .5s var(--ease)}
 
-/* ---------- Reveal al hacer scroll ---------- */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+/* ---------- CTA ---------- */
+.cta{text-align:center;padding:120px 32px;border-radius:40px;position:relative;overflow:hidden;border:1px solid var(--line);
+  background:radial-gradient(60% 80% at 50% 120%,rgba(20,184,166,.35),transparent 70%),var(--surface)}
+.cta h2{max-width:860px;margin:22px auto}
+.cta .lead{margin:0 auto 40px}
+.cta-ring{position:absolute;border:1px solid var(--line);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-ring.r1{width:520px;height:520px}.cta-ring.r2{width:820px;height:820px}.cta-ring.r3{width:1120px;height:1120px}
+.cta > *:not(.cta-ring){position:relative}
+.cta-form{display:flex;gap:8px;max-width:500px;margin:0 auto;padding:6px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+.cta-form input{flex:1;min-width:0;background:transparent;border:0;outline:0;font:inherit;padding:0 18px;color:var(--ink)}
+
+/* ---------- FOOTER ---------- */
+footer{padding:100px 0 30px}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line)}
+.foot p{color:var(--muted);margin-top:14px;max-width:300px;font-size:.94rem}
+.foot h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:500;margin-bottom:16px}
+.foot ul{list-style:none;display:grid;gap:8px}
+.foot a{background:linear-gradient(var(--ink),var(--ink)) 0 100%/0 1px no-repeat;transition:background-size .4s var(--ease)}
+.foot a:hover{background-size:100% 1px}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:26px;font-size:.85rem;color:var(--muted)}
+.big-word{font-family:var(--brand);font-size:clamp(3rem,15vw,14rem);line-height:.9;text-align:center;letter-spacing:.12em;margin-top:60px;user-select:none;
+  background:linear-gradient(180deg,rgba(226,232,240,.14),rgba(226,232,240,0));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
 /* ---------- Responsive ---------- */
 @media (max-width:980px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-visual{height:440px}
-  .services-grid{grid-template-columns:1fr 1fr}
-  .service.wide{grid-column:span 2}
-  .process{grid-template-columns:1fr 1fr}
-  .stats-panel{grid-template-columns:1fr 1fr;padding:40px}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .head,.learn,.process,.calc,.cases,.faq{grid-template-columns:1fr}
+  .process,.faq{gap:48px}
+  .process-sticky{position:static}
+  .learn{padding:36px}
+  .case:nth-child(2) .case-media{aspect-ratio:4/3}
+  .foot{grid-template-columns:1fr 1fr}
+  .chip{display:none}
+  .planet{width:640px;height:640px;right:-300px;bottom:-460px}
 }
 @media (max-width:760px){
-  section{padding:80px 0}
+  section{padding:90px 0}
   .container{padding:0 16px}
   .nav-links,.nav .btn{display:none}
   .menu-toggle{display:block}
-  .nav.open{flex-wrap:wrap;border-radius:28px}
-  .nav.open .nav-links{display:flex;flex-direction:column;width:100%;padding:12px 0 6px}
-  .nav.open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .nav.open .menu-toggle span:nth-child(2){opacity:0}
-  .nav.open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  .services-grid,.process,.cases{grid-template-columns:1fr}
-  .service.wide{grid-column:auto}
-  .stats-panel{grid-template-columns:1fr 1fr;padding:28px;gap:24px}
-  .testimonial,.cta{padding:48px 22px}
-  .cta-form{flex-direction:column;border-radius:24px}
-  .cta-form input{padding:14px 18px}
-  .fc-a{right:0}.fc-b{left:0}
-  .footer-grid{grid-template-columns:1fr}
+  .nav.open{flex-wrap:wrap;border-radius:26px}
+  .nav.open .nav-links{display:flex;flex-direction:column;width:100%;padding:8px 0 10px}
+  .nav.open .nav-links a{font-size:1.05rem}
+  .nav.open .menu-toggle span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  .nav.open .menu-toggle span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+  .head{margin-bottom:40px}
+  .svc-btn{grid-template-columns:36px 1fr auto;gap:12px;padding:24px 0}
+  .svc-inner{grid-template-columns:1fr;padding-left:48px}
+  .learn{padding:26px;border-radius:26px}
+  .f-step{padding:0 14px;font-size:.82rem;height:56px}
+  .card{padding:26px}
+  .flow{grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .flow div{padding:12px 10px}
+  .flow b{font-size:1rem}
+  .cta{padding:80px 20px;border-radius:28px}
+  .cta-form{flex-direction:column;border-radius:22px}
+  .cta-form input{padding:14px 16px}
+  .foot{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
+  .hero h1 .line > span{transform:none}
+  .manifesto .w{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-orbs" aria-hidden="true">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-</div>
-<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress"></div>
+
+<!-- Isotipo (A + órbita). Reemplazar por el SVG original del logo si lo tenés. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#cbd5e1"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient>
+    <symbol id="aMark" viewBox="0 0 120 100">
+      <path fill="url(#silver)" d="M58 4c2-3 6-3 8 0l42 66H90L62 26 34 70h-4c-2 0-3-2-2-4z"/>
+      <path fill="url(#silver)" d="M72 66l14 30h18L86 62z"/>
+      <path fill="#14b8a6" d="M4 92c40-10 80-24 104-44 6-5 4-10-6-10-8 0-14 1-20 2 10 0 16 1 14 5C88 60 46 80 4 92z"/>
+    </symbol>
+  </defs>
+</svg>
 
 <!-- ================= NAV ================= -->
-<div class="nav-wrap">
-  <nav class="nav glass" id="nav">
-    <a href="#" class="logo"><span class="logo-mark"></span>Aether</a>
+<div class="nav-wrap" id="navWrap">
+  <nav class="nav" id="nav">
+    <a href="#" class="logo" aria-label="Aether Agency"><svg class="logo-mark"><use href="#aMark"/></svg><span class="logo-word">AETHER</span></a>
     <ul class="nav-links">
       <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
       <li><a href="#proceso">Proceso</a></li>
       <li><a href="#casos">Casos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <a href="#contacto" class="btn btn-primary">Hablemos <span class="arrow">→</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <a href="#contacto" class="btn btn-dark magnetic">Hablemos <span class="arr">→</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
   </nav>
 </div>
 
 <main>
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow reveal"><span class="dot"></span>[COMPLETAR] Agencia de marketing digital</span>
-      <h1 class="reveal d1">Marketing que <span class="gradient-text">eleva</span> tu marca.</h1>
-      <p class="lead reveal d2">[COMPLETAR] Estrategia, contenido y performance para marcas que quieren crecer con datos, creatividad y resultados medibles.</p>
-      <div class="hero-ctas reveal d3">
-        <a href="#contacto" class="btn btn-primary">Empezar un proyecto <span class="arrow">→</span></a>
-        <a href="#casos" class="btn btn-ghost">Ver casos</a>
-      </div>
-    </div>
+  <div class="blob b1" data-speed="-0.15"></div>
+  <div class="blob b3" data-speed="-0.08"></div>
+  <svg class="waves" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="waveGrad" x1="0" x2="1"><stop offset="0" stop-color="#14b8a6" stop-opacity="0"/><stop offset=".5" stop-color="#2dd4bf"/><stop offset="1" stop-color="#14b8a6" stop-opacity="0"/></linearGradient>
+      <filter id="blurGlow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <path class="thin" d="M-50 520C260 420 420 160 760 120S1240 60 1500 -40"/>
+    <path class="glow" d="M-50 520C260 420 420 160 760 120S1240 60 1500 -40"/>
+    <path class="thin" d="M-50 980C300 860 560 760 900 740S1300 600 1500 480"/>
+    <path class="glow g2" d="M-50 980C300 860 560 760 900 740S1300 600 1500 480"/>
+  </svg>
+  <div class="planet" data-speed="0.12" aria-hidden="true"></div>
+  <div class="chip c1" data-speed="-0.25"><i>↗</i><span><strong>[+248%]</strong> alcance</span></div>
+  <div class="chip c2" data-speed="-0.12"><i>⚡</i><span>Procesos <strong>automatizados</strong></span></div>
 
-    <div class="hero-visual reveal d2" aria-hidden="true">
-      <div class="float-card glass spot fc-main">
-        <div>
-          <div class="fc-label">Crecimiento de campañas</div>
-          <div class="fc-value">+248% <span class="fc-up">▲ [dato]</span></div>
+  <div class="container">
+    <span class="label reveal">Marketing · Tecnología · Resultados</span>
+    <h1 style="margin-top:28px">
+      <span class="line"><span>Ideas que conectan.</span></span>
+      <span class="line"><span>Soluciones que</span></span>
+      <span class="line"><span><em>impulsan.</em></span></span>
+    </h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="lead reveal">En Aether Agency combinamos estrategia, creatividad y tecnología para llevar tu marca al siguiente nivel.</p>
+        <div class="hero-ctas reveal" style="margin-top:30px">
+          <a href="#contacto" class="btn btn-dark magnetic">Comenzar <span class="arr">→</span></a>
+          <a href="#como-funciona" class="btn btn-line magnetic">Ver cómo trabajamos <span class="arr">↓</span></a>
         </div>
-        <div class="chart">
-          <div class="bar" style="height:35%;animation-delay:.1s"></div>
-          <div class="bar" style="height:55%;animation-delay:.2s"></div>
-          <div class="bar" style="height:42%;animation-delay:.3s"></div>
-          <div class="bar" style="height:70%;animation-delay:.4s"></div>
-          <div class="bar" style="height:62%;animation-delay:.5s"></div>
-          <div class="bar" style="height:88%;animation-delay:.6s"></div>
-          <div class="bar" style="height:100%;animation-delay:.7s"></div>
-        </div>
       </div>
-      <div class="float-card glass fc-small fc-a">
-        <div class="fc-label">ROAS promedio</div>
-        <div class="fc-value">[4.8x]</div>
-      </div>
-      <div class="float-card glass fc-b">
-        <div class="avatar-stack"><i></i><i></i><i></i></div>
-        <div><strong>[+120]</strong><div class="fc-label">marcas confían</div></div>
-      </div>
+      <div class="scroll-hint reveal"><span class="mouse"></span>Deslizá para explorar</div>
     </div>
   </div>
 </section>
 
 <!-- ================= LOGOS ================= -->
-<div class="logos">
-  <div class="container">
-    <p>[COMPLETAR] Marcas que ya trabajan con nosotros</p>
-  </div>
+<div class="logos" aria-label="Clientes">
   <div class="marquee">
-    <!-- Reemplazar por <img> de logos. El bloque se repite 2 veces para el loop infinito -->
-    <div class="marquee-track">
+    <!-- Reemplazar por <img> de logos. La lista se repite 2 veces para el loop infinito. -->
+    <div class="track">
       <span>Cliente Uno</span><span>Marca Dos</span><span>Studio Tres</span><span>Brand Cuatro</span><span>Empresa Cinco</span><span>Logo Seis</span>
       <span>Cliente Uno</span><span>Marca Dos</span><span>Studio Tres</span><span>Brand Cuatro</span><span>Empresa Cinco</span><span>Logo Seis</span>
     </div>
   </div>
 </div>
 
-<!-- ================= SERVICIOS ================= -->
-<section id="servicios">
+<!-- ================= MANIFIESTO ================= -->
+<section class="manifesto">
   <div class="container">
-    <div class="section-head">
-      <h2 class="reveal">Todo lo que tu marca necesita para <span class="gradient-text">despegar</span>.</h2>
-      <p class="lead reveal d1" style="max-width:380px">[COMPLETAR] Un equipo, todos los canales. Elegí un servicio o armemos un plan integral.</p>
+    <span class="label" style="margin-bottom:32px">Nuestra idea</span>
+    <!-- Las palabras entre *asteriscos* se muestran en cursiva y color de acento -->
+    <p id="manifesto">Marketing, desarrollo y tecnología en *una* *sola* *agencia.* Explicamos cada paso, medimos cada resultado y construimos soluciones que *potencian* tu marca en el mundo digital.</p>
+  </div>
+</section>
+
+<!-- ================= SERVICIOS ================= -->
+<section id="servicios" style="padding-top:40px">
+  <div class="container">
+    <div class="head">
+      <div>
+        <span class="label reveal">Servicios</span>
+        <h2 class="reveal">Lo que hacemos, <em>explicado simple.</em></h2>
+      </div>
+      <p class="lead reveal">Tocá cada servicio para ver qué incluye. Podés contratarlos por separado o como un plan integral.</p>
     </div>
 
-    <div class="services-grid">
-      <article class="service glass spot wide reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
-        <h3>Estrategia & Growth</h3>
-        <p>[COMPLETAR] Diagnóstico, posicionamiento y un plan de crecimiento con objetivos claros y KPIs medibles.</p>
-        <div class="tags"><span>Research</span><span>Branding</span><span>Plan de medios</span></div>
-      </article>
-      <article class="service glass spot reveal d1">
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
-        <h3>Performance Ads</h3>
-        <p>[COMPLETAR] Campañas en Meta, Google y TikTok optimizadas para conversión.</p>
-      </article>
-      <article class="service glass spot reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></div>
-        <h3>Contenido & Social</h3>
-        <p>[COMPLETAR] Producción de contenido y gestión de redes con identidad propia.</p>
-      </article>
-      <article class="service glass spot reveal d1">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-        <h3>Web & SEO</h3>
-        <p>[COMPLETAR] Sitios rápidos, landing pages y posicionamiento orgánico.</p>
-      </article>
-      <article class="service glass spot reveal d2">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H5l-1 4z"/></svg></div>
-        <h3>Email & Automatización</h3>
-        <p>[COMPLETAR] Flujos automáticos que convierten y fidelizan clientes.</p>
-      </article>
+    <div class="services">
+      <div class="svc open reveal">
+        <button class="svc-btn" aria-expanded="true"><span class="svc-num">01</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16v-3M10 16v-6M14 16v-4M18 16V8M4 10l5-4 4 3 7-6M16 3h4v4"/></svg>Marketing Digital</span><span class="svc-icon"></span></button>
+        <div class="svc-panel"><div><div class="svc-inner"><span></span>
+          <p>[COMPLETAR] Estrategia, campañas y contenido para que tu marca llegue a las personas correctas y venda más.</p>
+          <ul><li>Estrategia</li><li>Meta & Google Ads</li><li>Redes sociales</li><li>Reportes</li></ul>
+        </div></div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">02</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Desarrollo Web</span><span class="svc-icon"></span></button>
+        <div class="svc-panel"><div><div class="svc-inner"><span></span>
+          <p>[COMPLETAR] Sitios y landing pages rápidas, claras y pensadas para convertir visitas en clientes.</p>
+          <ul><li>Sitios institucionales</li><li>Landing pages</li><li>E-commerce</li><li>SEO</li></ul>
+        </div></div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">03</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Sistemas a Medida</span><span class="svc-icon"></span></button>
+        <div class="svc-panel"><div><div class="svc-inner"><span></span>
+          <p>[COMPLETAR] Herramientas propias para tu negocio: paneles, gestión de clientes, turnos o stock.</p>
+          <ul><li>Paneles</li><li>CRM</li><li>Integraciones</li></ul>
+        </div></div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-btn" aria-expanded="false"><span class="svc-num">04</span><span class="svc-title"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Automatización y Tecnología</span><span class="svc-icon"></span></button>
+        <div class="svc-panel"><div><div class="svc-inner"><span></span>
+          <p>[COMPLETAR] Automatizamos tareas repetitivas para que tu equipo se enfoque en lo importante.</p>
+          <ul><li>Email automático</li><li>Chatbots</li><li>Flujos de ventas</li><li>IA aplicada</li></ul>
+        </div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO FUNCIONA (didáctico) ================= -->
+<section id="como-funciona" style="padding-top:20px">
+  <div class="container">
+    <div class="learn reveal">
+      <div>
+        <span class="label">Cómo funciona</span>
+        <h2 style="font-size:clamp(2rem,4vw,3.2rem);margin-top:20px">El camino de un <em>cliente</em>, paso a paso.</h2>
+        <div class="tabs" role="tablist" aria-label="Etapas del embudo"></div>
+        <div class="tab-content" id="tabContent" role="tabpanel" aria-live="polite"></div>
+      </div>
+      <div class="funnel" id="funnel" aria-hidden="true"></div>
     </div>
   </div>
 </section>
 
 <!-- ================= PROCESO ================= -->
 <section id="proceso">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="reveal">Un proceso simple.<br>Resultados reales.</h2>
+  <div class="container process">
+    <div class="process-sticky">
+      <span class="label reveal">Proceso</span>
+      <h2 class="reveal" style="margin:22px 0">Cuatro pasos. <em>Cero sorpresas.</em></h2>
+      <p class="lead reveal">[COMPLETAR] Sabés en todo momento en qué estamos trabajando y qué viene después.</p>
     </div>
-    <div class="process">
-      <div class="step glass spot reveal"><h3>Descubrir</h3><p>[COMPLETAR] Entendemos tu negocio, tu audiencia y tu competencia.</p></div>
-      <div class="step glass spot reveal d1"><h3>Diseñar</h3><p>[COMPLETAR] Definimos estrategia, mensajes y canales.</p></div>
-      <div class="step glass spot reveal d2"><h3>Lanzar</h3><p>[COMPLETAR] Ejecutamos campañas y contenido con velocidad.</p></div>
-      <div class="step glass spot reveal d3"><h3>Escalar</h3><p>[COMPLETAR] Medimos, optimizamos y escalamos lo que funciona.</p></div>
+    <div class="steps" id="steps">
+      <span class="fill" id="stepsFill"></span>
+      <div class="step"><span class="when">Semana 1</span><h3>Descubrir</h3><p>[COMPLETAR] Reunión inicial, auditoría de tus canales y análisis de tu competencia.</p></div>
+      <div class="step"><span class="when">Semana 2</span><h3>Diseñar</h3><p>[COMPLETAR] Te presentamos la estrategia: objetivos, mensajes, canales y presupuesto.</p></div>
+      <div class="step"><span class="when">Semana 3–4</span><h3>Lanzar</h3><p>[COMPLETAR] Producimos el contenido y salimos al aire con las primeras campañas.</p></div>
+      <div class="step"><span class="when">Mes 2 en adelante</span><h3>Escalar</h3><p>[COMPLETAR] Medimos cada semana, optimizamos lo que funciona y lo hacemos crecer.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ================= STATS ================= -->
-<section style="padding-top:40px">
+<!-- ================= CALCULADORA ================= -->
+<section id="calculadora" style="padding-top:0">
   <div class="container">
-    <div class="stats-panel glass reveal">
-      <div class="stat"><div class="num" data-count="120" data-suffix="+">0</div><div class="lbl">Marcas impulsadas</div></div>
-      <div class="stat"><div class="num" data-count="8" data-suffix="M">0</div><div class="lbl">Inversión gestionada (USD)</div></div>
-      <div class="stat"><div class="num" data-count="340" data-suffix="%">0</div><div class="lbl">Crecimiento promedio</div></div>
-      <div class="stat"><div class="num" data-count="98" data-suffix="%">0</div><div class="lbl">Clientes satisfechos</div></div>
+    <div class="head">
+      <div>
+        <span class="label reveal">Probalo vos</span>
+        <h2 class="reveal">¿Cuánto puede <em>rendir</em> tu inversión?</h2>
+      </div>
+      <p class="lead reveal">Mové los controles y mirá cómo se transforma cada peso en visitas, clientes y ventas.</p>
+    </div>
+    <div class="calc reveal">
+      <div class="card">
+        <div class="field">
+          <div class="field-top"><span>Inversión mensual en anuncios</span><output id="oBudget"></output></div>
+          <input type="range" id="budget" min="300" max="20000" step="100" value="2000" aria-label="Inversión mensual">
+        </div>
+        <div class="field">
+          <div class="field-top"><span>Precio promedio de tu producto</span><output id="oTicket"></output></div>
+          <input type="range" id="ticket" min="10" max="500" step="5" value="60" aria-label="Ticket promedio">
+        </div>
+        <div class="field">
+          <div class="field-top"><span>Visitas que terminan comprando</span><output id="oConv"></output></div>
+          <input type="range" id="conv" min="0.5" max="6" step="0.1" value="2.5" aria-label="Tasa de conversión">
+        </div>
+      </div>
+      <div class="card results">
+        <div>
+          <span class="label">Ventas estimadas por mes</span>
+          <div class="big" id="rSales" style="margin-top:18px">—</div>
+        </div>
+        <div class="flow">
+          <div><b id="rVisits">—</b><span>visitas</span></div>
+          <div><b id="rClients">—</b><span>clientes</span></div>
+          <div><b id="rRoas">—</b><span>retorno (ROAS)</span></div>
+        </div>
+        <p class="note">Estimación ilustrativa con un costo por visita de USD <span id="cpcTxt"></span>. [COMPLETAR] Ajustar el supuesto en el código (CPC).</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CASOS ================= -->
-<section id="casos">
+<section id="casos" style="padding-top:20px">
   <div class="container">
-    <div class="section-head">
-      <h2 class="reveal">Casos de <span class="gradient-text">éxito</span>.</h2>
-      <a href="#" class="btn btn-ghost reveal d1">Ver todos <span class="arrow">→</span></a>
+    <div class="head">
+      <div>
+        <span class="label reveal">Casos</span>
+        <h2 class="reveal">Historias que <em>crecieron.</em></h2>
+      </div>
+      <div style="justify-self:end" class="reveal"><a href="#" class="btn btn-line magnetic">Ver todos <span class="arr">→</span></a></div>
     </div>
     <div class="cases">
-      <article class="case glass spot reveal">
+      <a href="#" class="case reveal">
         <!-- Agregar: <img src="img/caso-1.jpg" alt="..."> dentro de .case-media -->
-        <div class="case-media m1">[Imagen del caso]</div>
-        <div class="case-body">
-          <div><h3>[Nombre del cliente]</h3><p>[Rubro] · [Servicio]</p></div>
-          <div class="case-metric">+[000]%</div>
-        </div>
-      </article>
-      <article class="case glass spot reveal d1">
-        <div class="case-media m2">[Imagen del caso]</div>
-        <div class="case-body">
-          <div><h3>[Nombre del cliente]</h3><p>[Rubro] · [Servicio]</p></div>
-          <div class="case-metric">x[0]</div>
-        </div>
-      </article>
+        <div class="case-media m1"><span>[Imagen del caso]</span></div>
+        <span class="case-tag">[Rubro]</span>
+        <div class="case-info"><div><h3>[Nombre del cliente]</h3><p>[Servicio] · [Año]</p></div><span class="case-metric">+[000]%</span></div>
+      </a>
+      <a href="#" class="case reveal">
+        <div class="case-media m2"><span>[Imagen del caso]</span></div>
+        <span class="case-tag">[Rubro]</span>
+        <div class="case-info"><div><h3>[Nombre del cliente]</h3><p>[Servicio] · [Año]</p></div><span class="case-metric">x[0]</span></div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ================= TESTIMONIO ================= -->
-<section style="padding-top:0">
-  <div class="container">
-    <div class="testimonial glass reveal">
-      <blockquote>“[COMPLETAR] Testimonio de un cliente contando cómo Aether transformó los resultados de su marca.”</blockquote>
-      <div class="author">
-        <div class="ph"></div>
-        <div><strong>[Nombre Apellido]</strong><small>[Cargo], [Empresa]</small></div>
-      </div>
+<!-- ================= FAQ ================= -->
+<section id="faq" style="padding-top:40px">
+  <div class="container faq">
+    <div>
+      <span class="label reveal">Preguntas frecuentes</span>
+      <h2 class="reveal" style="margin-top:22px">Lo que <em>todos</em> nos preguntan.</h2>
+    </div>
+    <div class="reveal">
+      <details open><summary>[COMPLETAR] ¿Cuánto tiempo tardan en verse resultados?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
+      <details><summary>[COMPLETAR] ¿Trabajan con empresas pequeñas?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
+      <details><summary>[COMPLETAR] ¿Cuál es la inversión mínima?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
+      <details><summary>[COMPLETAR] ¿Cómo me entero de los resultados?</summary><p>[COMPLETAR] Respuesta clara y breve.</p></details>
     </div>
   </div>
 </section>
@@ -450,14 +589,15 @@ footer{padding:80px 0 40px}
 <!-- ================= CTA ================= -->
 <section id="contacto" style="padding-top:0">
   <div class="container">
-    <div class="cta glass reveal">
-      <span class="eyebrow"><span class="dot"></span>Disponibles para nuevos proyectos</span>
-      <h2 style="margin-top:24px">¿Listo para llevar tu marca al <span class="gradient-text">siguiente nivel</span>?</h2>
-      <p class="lead">[COMPLETAR] Dejanos tu email y te contactamos en menos de 24 horas.</p>
+    <div class="cta reveal">
+      <span class="cta-ring r1"></span><span class="cta-ring r2"></span><span class="cta-ring r3"></span>
+      <span class="label">Disponibles para nuevos proyectos</span>
+      <h2>Potenciá tu marca en el <em>mundo digital.</em></h2>
+      <p class="lead">[COMPLETAR] Dejanos tu email y te respondemos en menos de 24 horas.</p>
       <!-- Conectar a Formspree, Google Forms, WhatsApp, etc. -->
-      <form class="cta-form glass" onsubmit="event.preventDefault();this.querySelector('button').textContent='¡Gracias! ✓'">
+      <form class="cta-form" id="ctaForm">
         <input type="email" placeholder="tu@email.com" required aria-label="Email">
-        <button class="btn btn-primary" type="submit">Enviar <span class="arrow">→</span></button>
+        <button class="btn btn-dark" type="submit">Enviar <span class="arr">→</span></button>
       </form>
     </div>
   </div>
@@ -467,77 +607,148 @@ footer{padding:80px 0 40px}
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
-      <div>
-        <a href="#" class="logo"><span class="logo-mark"></span>Aether Agency</a>
-        <p>[COMPLETAR] Agencia de marketing digital. Estrategia, creatividad y performance.</p>
-      </div>
-      <div>
-        <h4>Agencia</h4>
-        <ul><li><a href="#servicios">Servicios</a></li><li><a href="#casos">Casos</a></li><li><a href="#proceso">Proceso</a></li></ul>
-      </div>
-      <div>
-        <h4>Redes</h4>
-        <ul><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">TikTok</a></li></ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <ul><li><a href="mailto:[email]">[email@aether.agency]</a></li><li><a href="#">[+54 9 000 000 0000]</a></li><li>[Ciudad, País]</li></ul>
-      </div>
+    <div class="foot">
+      <div><a href="#" class="logo" aria-label="Aether Agency"><svg class="logo-mark"><use href="#aMark"/></svg><span class="logo-word">AETHER<small>AGENCY</small></span></a><p>Ideas que conectan. Soluciones que impulsan.</p></div>
+      <div><h4>Agencia</h4><ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#casos">Casos</a></li></ul></div>
+      <div><h4>Redes</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">TikTok</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="mailto:[email]">[email@aether.agency]</a></li><li><a href="#">[+54 9 000 000 0000]</a></li><li>[Ciudad, País]</li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> Aether Agency. Todos los derechos reservados.</span>
-      <span>[Política de privacidad]</span>
-    </div>
+    <div class="foot-bottom"><span>© <span id="year"></span> Aether Agency</span><span>[Política de privacidad]</span></div>
     <div class="big-word" aria-hidden="true">aether</div>
   </div>
 </footer>
 
 <script>
-// Año del footer
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('year').textContent = new Date().getFullYear();
+requestAnimationFrame(() => document.body.classList.add('loaded'));
 
-// Menú mobile
-const nav = document.getElementById('nav');
-document.getElementById('menuToggle').addEventListener('click', () => nav.classList.toggle('open'));
+/* ---------- Menú mobile ---------- */
+const nav = document.getElementById('nav'), toggle = document.getElementById('menuToggle');
+toggle.addEventListener('click', () => toggle.setAttribute('aria-expanded', nav.classList.toggle('open')));
 nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-// Reveal al hacer scroll + contador de estadísticas
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in');
-    e.target.querySelectorAll('[data-count]').forEach(countUp);
-    io.unobserve(e.target);
-  });
-}, { threshold: .15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+/* ---------- Reveal escalonado ---------- */
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+}), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => {
+  const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+  el.style.transitionDelay = (sibs.indexOf(el) * 80) + 'ms';
+  io.observe(el);
+});
 
-function countUp(el) {
-  const end = +el.dataset.count, suffix = el.dataset.suffix || '', dur = 1600, t0 = performance.now();
-  const tick = t => {
-    const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(end * eased) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
+/* ---------- Manifiesto: palabra por palabra ---------- */
+const man = document.getElementById('manifesto');
+man.innerHTML = man.textContent.trim().split(/\s+/).map(w => {
+  const s = /^\*.*\*[.,;:]?$/.test(w);
+  return `<span class="w${s ? ' serif' : ''}">${w.replace(/\*/g, '')}</span>`;
+}).join(' ');
+const words = man.querySelectorAll('.w');
+
+/* ---------- Servicios: acordeón ---------- */
+document.querySelectorAll('.svc-btn').forEach(btn => btn.addEventListener('click', () => {
+  const item = btn.parentElement, open = !item.classList.contains('open');
+  document.querySelectorAll('.svc').forEach(s => { s.classList.remove('open'); s.querySelector('.svc-btn').setAttribute('aria-expanded', 'false'); });
+  if (open) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+}));
+
+/* ---------- Embudo didáctico ---------- */
+const stages = [ // [COMPLETAR] editar textos y cifras
+  { name:'Atraer',    metric:'10.000 personas', title:'Que te conozcan', text:'Mostramos tu marca a las personas correctas con anuncios y contenido que aporta valor.', tip:'<b>Dato:</b> no se trata de llegar a todos, sino a quienes realmente pueden comprarte.' },
+  { name:'Interesar', metric:'1.200 visitas',   title:'Que quieran saber más', text:'Llevamos a esas personas a tu web o perfil con un mensaje claro y una buena primera impresión.', tip:'<b>Dato:</b> una landing rápida y simple puede duplicar las visitas que se quedan.' },
+  { name:'Convertir', metric:'60 clientes',     title:'Que te elijan', text:'Ofertas, pruebas sociales y un proceso de compra sin fricción convierten el interés en ventas.', tip:'<b>Dato:</b> cada paso de más en el checkout hace perder compradores.' },
+  { name:'Fidelizar', metric:'25 recompras',    title:'Que vuelvan', text:'Email, comunidad y atención postventa hacen que el cliente vuelva y te recomiende.', tip:'<b>Dato:</b> retener un cliente cuesta mucho menos que conseguir uno nuevo.' }
+];
+const tabs = document.querySelector('.tabs'), content = document.getElementById('tabContent'), funnel = document.getElementById('funnel');
+stages.forEach((s, i) => {
+  tabs.insertAdjacentHTML('beforeend', `<button class="tab" role="tab" data-i="${i}">${i+1}. ${s.name}</button>`);
+  funnel.insertAdjacentHTML('beforeend', `<div class="f-step" data-i="${i}"><span>${s.name}</span><b>${s.metric}</b></div>`);
+});
+let current = 0, autoplay;
+function setStage(i) {
+  current = i;
+  tabs.querySelectorAll('.tab').forEach((t, k) => t.setAttribute('aria-selected', k === i));
+  funnel.querySelectorAll('.f-step').forEach((f, k) => f.classList.toggle('active', k === i));
+  const s = stages[i];
+  content.innerHTML = `<div class="fade-swap"><h3>${s.title}</h3><p>${s.text}</p><div class="tip">${s.tip}</div></div>`;
+}
+function stopAuto() { clearInterval(autoplay); }
+[tabs, funnel].forEach(el => el.addEventListener('click', e => {
+  const t = e.target.closest('[data-i]'); if (!t) return;
+  stopAuto(); setStage(+t.dataset.i);
+}));
+setStage(0);
+// Avanza solo mientras está a la vista, hasta que el usuario hace clic
+new IntersectionObserver(([e]) => {
+  stopAuto();
+  if (e.isIntersecting && !reduce) autoplay = setInterval(() => setStage((current + 1) % stages.length), 4200);
+}, { threshold: .5 }).observe(document.querySelector('.learn'));
+
+/* ---------- Calculadora ---------- */
+const CPC = 0.45; // [COMPLETAR] costo promedio por visita en USD
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString('es-AR', { maximumFractionDigits: 0 });
+document.getElementById('cpcTxt').textContent = CPC.toFixed(2);
+const shown = {};
+function tween(id, to, f) {
+  const from = shown[id] ?? to, t0 = performance.now(); shown[id] = to;
+  if (reduce) { $(id).innerHTML = f(to); return; }
+  const step = t => { const p = Math.min((t - t0) / 450, 1), e = 1 - Math.pow(1 - p, 3);
+    $(id).innerHTML = f(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function calc() {
+  ['budget','ticket','conv'].forEach(id => { const r = $(id); r.style.setProperty('--p', ((r.value - r.min) / (r.max - r.min) * 100) + '%'); });
+  const b = +$('budget').value, t = +$('ticket').value, c = +$('conv').value / 100;
+  $('oBudget').textContent = 'USD ' + fmt(b); $('oTicket').textContent = 'USD ' + fmt(t); $('oConv').textContent = (+$('conv').value).toFixed(1) + '%';
+  const visits = b / CPC, clients = visits * c, sales = clients * t;
+  tween('rSales', sales, v => fmt(v) + '<small>USD</small>');
+  tween('rVisits', visits, fmt); tween('rClients', clients, fmt);
+  tween('rRoas', sales / b, v => v.toFixed(1) + 'x');
+}
+document.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', calc));
+calc();
+
+/* ---------- Formulario ---------- */
+document.getElementById('ctaForm').addEventListener('submit', e => {
+  e.preventDefault(); e.target.querySelector('button').innerHTML = '¡Gracias! <span class="arr">✓</span>';
+});
+
+/* ---------- Botones magnéticos (solo con mouse) ---------- */
+if (matchMedia('(hover:hover)').matches && !reduce) {
+  document.querySelectorAll('.magnetic').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .2}px, ${(e.clientY - r.top - r.height/2) * .3}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transition = 'transform .5s var(--ease)'; b.style.transform = '';
+      setTimeout(() => b.style.transition = '', 500); });
+  });
 }
 
-// Brillo glass que sigue al mouse
-document.querySelectorAll('.spot').forEach(card => {
-  card.addEventListener('pointermove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-});
+/* ---------- Scroll: progreso, nav, parallax, manifiesto, línea del proceso ---------- */
+const progress = $('progress'), navWrap = $('navWrap'), parallax = document.querySelectorAll('[data-speed]');
+const steps = document.querySelectorAll('.step'), stepsBox = $('steps'), fill = $('stepsFill');
+let lastY = 0, ticking = false;
+function onScroll() {
+  const y = scrollY, h = innerHeight;
+  progress.style.transform = `scaleX(${y / (document.documentElement.scrollHeight - h)})`;
+  navWrap.classList.toggle('hide', y > lastY && y > 300 && !nav.classList.contains('open'));
+  lastY = y;
+  if (!reduce) parallax.forEach(el => el.style.transform = `translate3d(0, ${y * el.dataset.speed}px, 0)`);
 
-// Parallax suave de los orbes con el mouse
-const orbs = document.querySelector('.bg-orbs');
-window.addEventListener('pointermove', e => {
-  const x = (e.clientX / innerWidth - .5) * 30, y = (e.clientY / innerHeight - .5) * 30;
-  orbs.style.transform = `translate(${x}px, ${y}px)`;
-});
+  const mr = man.getBoundingClientRect();
+  const mp = Math.min(Math.max((h * .85 - mr.top) / (mr.height + h * .35), 0), 1);
+  words.forEach((w, i) => w.classList.toggle('on', reduce || i < mp * words.length));
+
+  const sr = stepsBox.getBoundingClientRect();
+  fill.style.transform = `scaleY(${Math.min(Math.max((h * .55 - sr.top) / sr.height, 0), 1)})`;
+  steps.forEach(s => s.classList.toggle('on', s.getBoundingClientRect().top < h * .55));
+  ticking = false;
+}
+addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+addEventListener('resize', onScroll);
+onScroll();
 </script>
 </body>
 </html>
