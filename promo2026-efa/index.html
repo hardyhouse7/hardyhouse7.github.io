@@ -80,7 +80,22 @@ img{display:block;max-width:100%}
    BASE EDITORIAL
    ===================================================== */
 .wrap{max-width:1240px;margin:0 auto;padding-inline:var(--pad)}
-.dark{background:var(--ink);color:var(--paper)}
+.dark{background:var(--cream);color:var(--ink)}
+/* bloques antes oscuros, ahora claros con letras marrones */
+.dark .cd,.dark .cd .u{border-color:var(--rule)}
+.dark .cd .l{color:var(--cocoa)}
+.dark .ticket{background:var(--paper);box-shadow:0 34px 60px -30px rgba(42,26,16,.4);outline:1px solid var(--rule)}
+.dark .scratch{background:var(--cream)}
+.dark .tk-stub::before,.dark .tk-stub::after{background:var(--cream)}
+.dark .btn::before{background:var(--ink)}
+.dark .btn:hover{color:var(--paper)}
+.dark .btn.fill{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dark .btn.fill::before{background:var(--cocoa)}
+.dark .tally{color:var(--cocoa)}
+.dark .tally b{color:var(--ink)}
+.dark .field .hint{border-color:var(--cocoa);color:var(--cocoa)}
+.dark .stalk path{stroke:var(--tan)}
+.dark .stalk ellipse{fill:var(--tan)}
 .kicker{font:500 11px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
 .kicker::before{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
 .h{font-family:var(--display);font-weight:400;font-size:clamp(44px,8.4vw,112px);line-height:.95;letter-spacing:-.015em;margin-top:18px}
@@ -131,11 +146,11 @@ body.opened .mega .ch{transform:none}
 .spinner b{font:400 clamp(26px,3vw,36px)/1 var(--display);transition:transform .4s}
 .spinner:hover b{transform:translateY(6px)}
 @keyframes rot{to{transform:rotate(360deg)}}
-.marquee{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:14px 0;border-block:1px solid var(--ink)}
+.marquee{background:var(--paper-2);color:var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0;border-block:1px solid var(--ink)}
 .marquee .track{display:inline-flex;animation:slide 30s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
 .marquee span{font:italic 400 clamp(17px,2.2vw,24px)/1 var(--display);padding-inline:22px;display:inline-flex;align-items:center;gap:44px}
-.marquee span::after{content:"✦";font-style:normal;font-size:.6em;color:var(--tan-b)}
+.marquee span::after{content:"✦";font-style:normal;font-size:.6em;color:var(--tan)}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* =====================================================
@@ -270,7 +285,7 @@ body.opened .mega .ch{transform:none}
   transform:rotate(var(--r,0deg));transition:transform .45s cubic-bezier(.2,.8,.2,1);user-select:none}
 .note:nth-child(odd){--r:-1.6deg}.note:nth-child(even){--r:1.4deg;margin-top:22px}
 .note:hover{transform:rotate(0) translateY(-8px)}
-.note.dk{background:var(--ink);color:var(--paper)}
+.note.dk{background:var(--paper);color:var(--ink)}
 .note.tn{background:var(--tan);color:var(--ink)}
 .note .q{font:500 11px/1 var(--mono);letter-spacing:.14em;display:flex;justify-content:space-between}
 .note p{font-family:var(--display);font-style:italic;font-size:clamp(25px,3.2vw,36px);line-height:1.12;letter-spacing:-.01em}
@@ -471,11 +486,10 @@ body.opened .mega .ch{transform:none}
       </div>
     </div>
     <div class="rail" id="rail" tabindex="0" aria-label="Frases de la promoción">
-      <article class="note"><div class="q"><span>01</span><span>/ 05</span></div><p>“Como el trigo, crecimos juntos y cada uno a su tiempo.”</p></article>
-      <article class="note dk"><div class="q"><span>02</span><span>/ 05</span></div><p>“De cada surco que caminamos nos llevamos un recuerdo.”</p></article>
-      <article class="note"><div class="q"><span>03</span><span>/ 05</span></div><p>“A nuestras familias y docentes: gracias por ser la tierra firme donde echamos raíces.”</p></article>
-      <article class="note tn"><div class="q"><span>04</span><span>/ 05</span></div><p>“La escuela queda atrás; lo sembrado viaja con nosotros.”</p></article>
-      <article class="note"><div class="q"><span>05</span><span>/ 05</span></div><p>“Hoy cerramos una tranquera y abrimos todas las que vienen.”</p></article>
+      <article class="note"><div class="q"><span>01</span><span>/ 04</span></div><p>“Como el trigo, crecimos juntos y cada uno a su tiempo.”</p></article>
+      <article class="note dk"><div class="q"><span>02</span><span>/ 04</span></div><p>“De cada surco que caminamos nos llevamos un recuerdo.”</p></article>
+      <article class="note"><div class="q"><span>03</span><span>/ 04</span></div><p>“A nuestras familias y docentes: gracias por ser la tierra firme donde echamos raíces.”</p></article>
+      <article class="note tn"><div class="q"><span>04</span><span>/ 04</span></div><p>“La escuela queda atrás; lo sembrado viaja con nosotros.”</p></article>
     </div>
     <div class="wrap"><div class="bar"><i id="railBar"></i></div></div>
   </section>
@@ -531,11 +545,11 @@ const EVENTO = {
 };
 const EGRESADOS = [
   'Barria, Katherine L.','Cabral, Victoria','Cano, Ivana Valentina','Comán, Mailén Sofía',
-  'Franco, Zoe Valentina','Gamarra, Luján María José','Gomez, Brisa Marianela','Luque, Solange Thiara',
+  'Franco, Zoe Valentina','Gamarra, Luján María José','Gomez, Brisa Marianela','Luque, Thiara',
   'Masin Pepermans, Lucia','Meiler Aguirre, Zoe','Montenegro, Maira Naiara','Perone, Luana María',
   'Regonat Masin, Liz','Rodríguez, María Eugenia','Romero Guardia, Kiara Aixa','Rosales, Valentina Sofía',
-  'Ruiz Díaz, Magalí Guadalupe','Tejeda Zagni, Cloé','Serrano Gavilán, Constanza','Speranza, Ana Belén',
-  'Villan, Anna Paula','Yaccuzzi Quevedo, Ileana Evelin','Yaccuzzi, Valentina',
+  'Ruiz Díaz, Magalí Guadalupe','Serrano Gavilán, Constanza','Speranza, Ana Belén',
+  'Villan, Anna Paula','Yaccuzzi, Valentina','Yaccuzzi Quevedo, Ileana Evelyn','Zagni, Cloé',
   'Aguirre, Nicolás Agustín','Bosch, Esequiel Ricardo','Corgniali, Juan Cruz','Cubecino, Agustín Ignacio',
   'De Nardo, Santino Thomás','Flores, Aín','Forlín, Santiago Tadeo','Fortonskiz Vera, Fabricio',
   'Meiler, Juan José','Salpietro, Jerónimo Salvador','Tomadín, Joaquín Andrés','Vega, Nahuel Nicolás',
