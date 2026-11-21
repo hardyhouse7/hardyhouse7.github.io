@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Promoción 2026 · E.F.A Nº 8212</title>
-<meta name="description" content="Promoción 2026 de la E.F.A Nº 8212. Sábado 12 de diciembre de 2026: Acto de Colación 20:00 hs y Baile de Recepción 22:30 hs. 25 de Mayo 1530, Villa Ocampo.">
+<meta name="description" content="Promoción 2026 de la E.F.A Nº 8212. Sábado 12 de diciembre de 2026: Acto de Colación 20:00 hs, cena 22:30 hs y Baile de Recepción 00:00 hs. 25 de Mayo 1530, Villa Ocampo.">
 <meta name="theme-color" content="#2a1a10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -178,11 +178,12 @@ body.opened .mega .ch{transform:none}
 .tk-sub{font:italic 400 clamp(17px,3.6vw,22px)/1.2 var(--display);margin-top:10px;color:var(--cocoa)}
 .scratch canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .8s ease}
 .scratch canvas.done{opacity:0;pointer-events:none}
-.tk-stub{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;border-top:2px dashed var(--rule);padding:18px 22px 22px;gap:10px}
+.tk-stub{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;border-top:2px dashed var(--rule);padding:18px 22px 22px;gap:10px}
 .tk-stub::before,.tk-stub::after{content:"";position:absolute;top:-13px;width:26px;height:26px;border-radius:50%;background:var(--ink)}
 .tk-stub::before{left:-13px}.tk-stub::after{right:-13px}
 .tk-stub small{display:block;font:500 9.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cocoa);margin-bottom:7px}
 .tk-stub strong{font-family:var(--display);font-weight:500;font-size:clamp(17px,3.6vw,22px);line-height:1.1;display:block}
+@media (max-width:560px){.tk-stub{grid-template-columns:repeat(2,1fr);row-gap:16px}}
 .tk-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:30px}
 .btn{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:15px 22px;border-radius:99px;border:1px solid currentColor;
   position:relative;overflow:hidden;transition:color .35s;isolation:isolate}
@@ -229,6 +230,7 @@ body.opened .mega .ch{transform:none}
    ===================================================== */
 .promo{padding-block:clamp(72px,11vw,150px)}
 .promo .cols{display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,70px)}
+.promo .cols>*{min-width:0}
 @media (min-width:900px){
   .promo .cols{grid-template-columns:.8fr 1.2fr;align-items:start}
   .side{position:sticky;top:48px}
@@ -419,7 +421,8 @@ body.opened .mega .ch{transform:none}
             </div>
             <div class="tk-stub">
               <div><small>Colación</small><strong id="evActo"></strong></div>
-              <div><small>Recepción</small><strong id="evHora"></strong></div>
+              <div><small>Cena</small><strong id="evCena"></strong></div>
+              <div><small>Baile</small><strong id="evHora"></strong></div>
               <div><small>Faltan</small><strong id="evBadge"></strong></div>
             </div>
           </div>
@@ -442,7 +445,8 @@ body.opened .mega .ch{transform:none}
         <p class="addr rv" style="--d:.15s">25 de Mayo 1530<small>S3580 Villa Ocampo, Santa Fe</small></p>
         <ol class="agenda rv" style="--d:.25s">
           <li><time>20:00</time><span><b>Acto de Colación</b>Entrega de diplomas</span></li>
-          <li><time>22:30</time><span><b>Baile de Recepción</b>A celebrar con la Promo 26</span></li>
+          <li><time>22:30</time><span><b>Cena</b>A la mesa con familias y amigos</span></li>
+          <li><time>00:00</time><span><b>Baile de Recepción</b>A celebrar con la Promo 26</span></li>
         </ol>
         <div class="lugar-actions rv" style="--d:.35s">
           <a class="btn solid" id="dirBtn" target="_blank" rel="noopener">Cómo llegar</a>
@@ -539,7 +543,8 @@ const EVENTO = {
   escuela: 'E.F.A Nº 8212',
   anio: 2026, mes: 12, dia: 12,
   acto: '20:00',  // Acto de Colación
-  hora: '22:30',  // Baile de Recepción
+  cena: '22:30',  // Cena
+  hora: '00:00',  // Baile de Recepción
   direccion: '25 de Mayo 1530, S3580 Villa Ocampo, Santa Fe',
   lugar: '25 de Mayo 1530, Villa Ocampo'
 };
@@ -604,7 +609,7 @@ $('#openBtn').addEventListener('click', e => {
 
 /* ---------- inicio ---------- */
 const fechaLarga = `${EVENTO.dia} de diciembre de ${EVENTO.anio}`;
-const cinta = [fechaLarga, `Acto de Colación ${EVENTO.acto} hs`, `Baile de Recepción ${EVENTO.hora} hs`, '25 de Mayo 1530 · Villa Ocampo', EVENTO.escuela, 'Promo 26'];
+const cinta = [fechaLarga, `Acto de Colación ${EVENTO.acto} hs`, `Cena ${EVENTO.cena} hs`, `Baile de Recepción ${EVENTO.hora} hs`, '25 de Mayo 1530 · Villa Ocampo', EVENTO.escuela, 'Promo 26'];
 $('#track').innerHTML = Array(4).fill(cinta.map(t => `<span>${t}</span>`).join('')).join('');
 $('#zero').addEventListener('click', e => {
   const z = e.currentTarget, r = z.getBoundingClientRect();
@@ -643,6 +648,7 @@ function tick(){
 }
 tick(); setInterval(tick, 1000);
 $('#evActo').textContent = `${EVENTO.acto} hs`;
+$('#evCena').textContent = `${EVENTO.cena} hs`;
 $('#evHora').textContent = `${EVENTO.hora} hs`;
 
 /* ---------- raspadita ---------- */
@@ -717,7 +723,7 @@ $('#icsBtn').addEventListener('click', () => {
   const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Promo 2026 EFA 8212//ES','BEGIN:VEVENT',
     'UID:recepcion-promo2026-efa8212', `DTSTAMP:${ymd(new Date())}T000000Z`, ...when,
     `SUMMARY:${EVENTO.titulo}`, `LOCATION:${EVENTO.direccion}`,
-    `DESCRIPTION:${EVENTO.acto} hs Acto de Colación · ${EVENTO.hora} hs Baile de Recepción · Promoción 2026 ${EVENTO.escuela}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    `DESCRIPTION:${EVENTO.acto} hs Acto de Colación · ${EVENTO.cena} hs Cena · ${EVENTO.hora} hs Baile de Recepción · Promoción 2026 ${EVENTO.escuela}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([ics], {type:'text/calendar'}));
   a.download = 'recepcion-promo-2026.ics'; a.click();
@@ -725,7 +731,7 @@ $('#icsBtn').addEventListener('click', () => {
   toast('Evento listo para tu calendario');
 });
 async function share(){
-  const data = {title: document.title, text: `¡Te invitamos a la noche de la Promo 2026 de la ${EVENTO.escuela}! Sábado 12 de diciembre: Acto de Colación ${EVENTO.acto} hs y Baile de Recepción ${EVENTO.hora} hs, en ${EVENTO.lugar}.`, url: location.href};
+  const data = {title: document.title, text: `¡Te invitamos a la noche de la Promo 2026 de la ${EVENTO.escuela}! Sábado 12 de diciembre: Acto de Colación ${EVENTO.acto} hs, cena ${EVENTO.cena} hs y Baile de Recepción ${EVENTO.hora} hs, en ${EVENTO.lugar}.`, url: location.href};
   try {
     if (navigator.share) await navigator.share(data);
     else { await navigator.clipboard.writeText(`${data.text} ${data.url}`); toast('Invitación copiada'); }
